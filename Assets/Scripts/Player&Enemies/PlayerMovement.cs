@@ -4,30 +4,88 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public float speed, sensitivity, maxForce;
+    private float speed;
+    public float walkSpeed, runSpeed, crouchSpeed, sensitivity, maxForce;
+    private bool crouching = false;
 
     private float lookRot;
     private Vector2 move, look;
     private Rigidbody rb;
     private Camera cam;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
 
         Cursor.lockState = CursorLockMode.Locked;
+        speed = walkSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         move.x = Input.GetAxis("Horizontal");
         move.y = Input.GetAxis("Vertical");
 
         look.x = Input.GetAxis("Mouse X");
         look.y = Input.GetAxis("Mouse Y");
+
+        //jumping
+
+                
+        //crouch
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            speed = crouchSpeed;
+            crouching = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            speed = walkSpeed;
+            crouching = false;
+        }
+        if (!crouching)
+        {
+
+            //sprint
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                speed = runSpeed;
+
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                speed = walkSpeed;
+            }
+        }
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 currVelocity = rb.velocity;
+        Vector3 targetVelocity = new Vector3(move.x, 0, move.y) * speed;
+
+        targetVelocity = transform.TransformDirection(targetVelocity);
+        Vector3 velocityChange = targetVelocity - currVelocity;
+
+        Vector3.ClampMagnitude(velocityChange, maxForce);
+
+        rb.AddForce(new Vector3(velocityChange.x, 0, velocityChange.z), ForceMode.VelocityChange);
+    }
+
+    private void LateUpdate()
+    {
+        transform.Rotate(Vector3.up * look.x * sensitivity);
+
+        lookRot += (-look.y * sensitivity);
+
+        lookRot = Mathf.Clamp(lookRot, -90, 90);
+
+        cam.transform.eulerAngles = new Vector3(lookRot,
+            cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
     }
 }

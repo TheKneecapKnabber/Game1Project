@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ListenerC : MonoBehaviour
 {
+    /*
     private void OnEnable()
     {
         DelegateTest._myDeath += C;
@@ -17,4 +18,5 @@ public class ListenerC : MonoBehaviour
     {
         Debug.Log("listener C");
     }
+    */
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DelegateTest : MonoBehaviour
 {
+    /*
     private delegate void Example(int x);
     private Example _myDelegate;
 
@@ -47,6 +48,6 @@ public class DelegateTest : MonoBehaviour
         health -= x;
         Debug.Log("health: " + health);
     }
-    
+    */
 
 }
