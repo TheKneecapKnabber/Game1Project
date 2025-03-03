@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GroundedTrigger gt;
     private float speed;
-    public float walkSpeed, runSpeed, crouchSpeed, sensitivity, maxForce;
+    public float walkSpeed, runSpeed, crouchSpeed, sensitivity, maxForce, jumpForce;
     private bool crouching;
 
     private float lookRot;
@@ -42,9 +42,9 @@ public class PlayerMovement : MonoBehaviour
         //jumping
         if (gt.grounded)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-
+                rb.AddForce(Vector3.up * jumpForce);
             }
         }
                 
