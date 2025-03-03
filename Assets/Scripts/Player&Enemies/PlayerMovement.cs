@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GroundedTrigger gt;
     private float speed;
     public float walkSpeed, runSpeed, crouchSpeed, sensitivity, maxForce;
-    private bool crouching = false;
+    private bool crouching;
 
     private float lookRot;
     private Vector2 move, look;
@@ -20,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         speed = walkSpeed;
+        crouching = false;
+        //trigger script is on sphere child object
+        gt = transform.GetComponentInChildren<GroundedTrigger>();
+
+
     }
 
     // Update is called once per frame
@@ -33,18 +40,26 @@ public class PlayerMovement : MonoBehaviour
         look.y = Input.GetAxis("Mouse Y");
 
         //jumping
+        if (gt.grounded)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
 
+            }
+        }
                 
         //crouch
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             speed = crouchSpeed;
             crouching = true;
+            transform.localScale = new Vector3(1f, 0.5f, 1f);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             speed = walkSpeed;
             crouching = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         if (!crouching)
         {
@@ -88,4 +103,5 @@ public class PlayerMovement : MonoBehaviour
         cam.transform.eulerAngles = new Vector3(lookRot,
             cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
     }
+    
 }
