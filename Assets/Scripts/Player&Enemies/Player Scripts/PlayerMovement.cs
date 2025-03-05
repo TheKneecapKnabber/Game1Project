@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public GroundedTrigger gt;
     private float speed;
+
     public float walkSpeed, runSpeed, crouchSpeed, sensitivity, maxForce, jumpForce, gravity;
+
     private bool crouching;
 
     private float lookRot;
@@ -91,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(new Vector3(velocityChange.x, 0, velocityChange.z), ForceMode.VelocityChange);
         rb.AddForce(Vector3.down * gravity * rb.mass);
+
     }
 
     private void LateUpdate()
