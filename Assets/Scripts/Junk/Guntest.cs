@@ -4,7 +4,7 @@ using System.IO.Enumeration;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Gun", menuName ="ScriptableObjects/Gun")]
-public abstract class Gun : ScriptableObject
+public abstract class Guntest : ScriptableObject
 {
     public float damage;
     public int ammo;
