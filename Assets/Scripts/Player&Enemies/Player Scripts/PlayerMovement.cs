@@ -51,28 +51,29 @@ public class PlayerMovement : MonoBehaviour
         }
                 
         //crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))//enter crouch
         {
             speed = crouchSpeed;
             crouching = true;
             transform.localScale = new Vector3(1f, 0.5f, 1f);
         }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl))//leave crouch
         {
             speed = walkSpeed;
             crouching = false;
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
-        if (!crouching)
+        if (!crouching)//to prevent sprint speed while crouching
+            //jumping isn't required to go in here so we can have move interesting vents
         {
 
             //sprint
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))//enter
             {
                 speed = runSpeed;
 
             }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.LeftShift))//leave
             {
                 speed = walkSpeed;
             }
