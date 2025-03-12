@@ -11,6 +11,8 @@ namespace BehaviorTree
 		public bool hasStarted = false;
 		public State state;
 
+		protected BTAgent _owner;
+
 		public State Update()
 		{
 			if (hasStarted == false)
@@ -34,9 +36,9 @@ namespace BehaviorTree
 		protected abstract void OnStop();
 		protected abstract State OnUpdate();
 
-		public virtual void InitNode()
+		public virtual void InitNode(BTAgent owner)
 		{
-			//
+			_owner = owner;
 		}
 	}
 

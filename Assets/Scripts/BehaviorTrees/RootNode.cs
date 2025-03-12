@@ -26,9 +26,9 @@ namespace BehaviorTree
 			return state;
 		}
 		
-		public override void InitNode()
+		public override void InitNode(BTAgent owner)
 		{
-			base.InitNode();
+			base.InitNode(owner);
 			state = State.Running;
 		}
 	}

@@ -12,9 +12,9 @@ namespace BehaviorTree
 
 		protected int _portCount;
 
-        public override void InitNode()
+        public override void InitNode(BTAgent owner)
         {
-            base.InitNode();
+            base.InitNode(owner);
             _portCount = -1;
 
             foreach(NodePort port in Outputs)

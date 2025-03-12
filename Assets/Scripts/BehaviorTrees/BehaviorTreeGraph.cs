@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+
 namespace BehaviorTree
 {
 	[CreateAssetMenu]
@@ -38,9 +39,33 @@ namespace BehaviorTree
 				}
 			}
 		}
-		public void initNodes()
+
+		public void InitBehaviortree(BTAgent owner)
 		{
-			//
+			FindRootNode();
+			InitNodes(owner);
+		}
+
+		public void InitNodes(BTAgent owner)
+		{
+			foreach(BTBaseNode node in nodes)
+			{
+				node.InitNode(owner);
+				node.hasStarted = false;
+			}
+		}
+
+		public State Update()
+		{
+			if (_rootNode == null)
+			{
+				_curState = State.Failure;
+			}
+			else if(_rootNode.state == State.Running || _rootNode.state == State.Success)
+			{
+				_curState = _rootNode.Update();
+			}
+			return _curState;
 		}
 	}
 }
