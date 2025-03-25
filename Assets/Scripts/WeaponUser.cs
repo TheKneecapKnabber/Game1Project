@@ -26,6 +26,7 @@ public class WeaponUser : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
+            
             if (selectedWeapon is IMeleeable meleeWeapon)
             {
                 meleeWeapon.Melee();

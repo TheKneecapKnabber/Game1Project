@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IAutomatic 
-{
-    void shooting();
+ interface IEnemy
+{ 
+    public void TakeDamage(int damage);
 }
