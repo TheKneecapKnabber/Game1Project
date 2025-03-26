@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class WeaponController : MonoBehaviour
     public WeaponBase myWeapon;
     public Transform shootPoint;
     public GameObject ProjectilePrefab;
+    public GameObject[] weapons = new GameObject[3];
 
     // Start is called before the first frame update
     void Start()

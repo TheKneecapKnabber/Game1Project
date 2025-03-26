@@ -38,4 +38,18 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
+    public void Heal(int amt)
+    {
+        health += amt;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+            OnHealthChange?.Invoke(health);
+        }
+        else
+        {
+            OnHealthChange?.Invoke(health);
+        }
+        
+    }
 }
