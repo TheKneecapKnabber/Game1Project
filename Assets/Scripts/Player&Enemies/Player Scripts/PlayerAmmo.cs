@@ -48,11 +48,11 @@ public class PlayerAmmo : MonoBehaviour
         if (sAmmo > maxSAmmo)
         {
             sAmmo = maxSAmmo;
-            OnNAmmoChange?.Invoke(nAmmo);
+            OnSAmmoChange?.Invoke(sAmmo);
         }
         else
         {
-            OnNAmmoChange?.Invoke(nAmmo);
+            OnSAmmoChange?.Invoke(sAmmo);
         }
 
     }

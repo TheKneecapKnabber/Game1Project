@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class TargetDummy : MonoBehaviour
+public class TargetDummy : MonoBehaviour, IEnemy
 {
     private int health;
     public int maxHealth;
@@ -17,7 +17,7 @@ public class TargetDummy : MonoBehaviour
         health = maxHealth;
         
     }
-    public void Damage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
     }

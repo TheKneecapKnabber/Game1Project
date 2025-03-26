@@ -11,22 +11,24 @@ public class AmmoUI : MonoBehaviour
     private void OnEnable()
     {
         PlayerAmmo.OnNAmmoChange += UpdateNAmmoUI;
+        PlayerAmmo.OnSAmmoChange += UpdateSAmmoUI;
     }
     private void OnDisable()
     {
-        
+        PlayerAmmo.OnNAmmoChange -= UpdateNAmmoUI;
+        PlayerAmmo.OnSAmmoChange -= UpdateSAmmoUI;
     }
 
     private void UpdateNAmmoUI(int newNAmmo)
     {
         if (newNAmmo == 0)
         {
-            sAmmoText.enabled = false;
+            nAmmoText.enabled = false;
         }
         else
         {
-            sAmmoText.enabled = true;
-            sAmmoText.text = ($"Regular ammo: {newNAmmo}");
+            nAmmoText.enabled = true;
+            nAmmoText.text = ($"Regular ammo: {newNAmmo}");
         }
     }
 
