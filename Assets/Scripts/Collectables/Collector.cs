@@ -6,11 +6,11 @@ using System;
 
 public class Collector : MonoBehaviour
 {
-    public static event Action Collect;
+    
     [SerializeField] private Transform collectorSouce;
     public TMP_Text itemText;
     
-    public float collectorRange = 3f;
+    public float collectorRange = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +31,12 @@ public class Collector : MonoBehaviour
                 itemText.enabled = true;
                 itemText.text = hit.collider.gameObject.name;
                 //Debug.Log(hit.collider.gameObject.name);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hit.collider.gameObject.GetComponent<CollectableBase>().OnPickup();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Collect?.Invoke();
-            }
+            
             
 
             

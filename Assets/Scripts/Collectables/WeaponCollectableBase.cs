@@ -17,16 +17,6 @@ public abstract class WeaponCollectableBase : CollectableBase
         }
     }
 
-    private void OnEnable()
-    {
-        Collector.Collect += OnPickup;
-
-    }
-    private void OnDisable()
-    {
-        Collector.Collect -= OnPickup;
-    }
-
     public override void OnPickup()
     {
         Equip();

@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 7355577529271963847}
   m_Layer: 0
   m_Name: NAmmo
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,8 +319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa23af734bea664bb2496beef31c04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverNAmmo: 60
   player: {fileID: 0}
+  recoverNAmmo: 60
+  pa: {fileID: 0}
 --- !u!1 &8562917737403112980
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CollectablePistol : WeaponCollectableBase
+public class CollectableMachineGun : WeaponCollectableBase
 {
-    //WeaponController inv = WeaponCollectableBase.wc;
-
-    
-    [SerializeField] private GameObject pistolPreFab;
-    [SerializeField] private int giveAmmo = 10; //give ammo should be clip size
+    [SerializeField] private GameObject MachineGunPreFab;
+    [SerializeField] private int giveAmmo = 20; //give ammo should be clip size
 
 
 
@@ -17,21 +13,21 @@ public class CollectablePistol : WeaponCollectableBase
 
     public override void Equip()
     {
-        if (wc.hasPistol)//has pistol is a bool
+        if (wc.hasMachineGun)//has pistol is a bool
         {
             //give normal ammo
             player.GetComponent<PlayerAmmo>().GetNAmmo(giveAmmo);
             Debug.Log("give ammo");
-            
+
         }
         else
         {
             // give pistol prefab to wc "weapon" in slot whatever
             Debug.Log("gave pistol");
-            wc.weapons[0] = pistolPreFab;
+            wc.weapons[1] = MachineGunPreFab;
             //give normal ammo
             player.GetComponent<PlayerAmmo>().GetNAmmo(giveAmmo);
-            wc.hasPistol = true;
+            wc.hasMachineGun = true;
         }
     }
 }
