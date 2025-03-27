@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-
+    public static event Action Shoot;
+    public static event Action StopShoot;
     public WeaponBase myWeapon;
     public Transform shootPoint;
+    public Transform WeaponPos;
     public GameObject ProjectilePrefab;
     public GameObject[] weapons = new GameObject[3];
-
+    private GameObject currGun;
+    public bool hasPistol, hasShotgun, hasMachineGun = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +35,17 @@ public class WeaponController : MonoBehaviour
             Debug.Log("behaveior set to Projectile!");
             myWeapon.SetWeaponBehavior(new ProjectileBehavior { projectilePrefab = ProjectilePrefab });
         }
+
         if (Input.GetMouseButtonDown(0))
         {
+            Shoot?.Invoke();
             myWeapon.Use();
             
         }
+        if(Input.GetMouseButtonUp(0))
+        {
+            StopShoot?.Invoke();
+        }
     }
+
 }

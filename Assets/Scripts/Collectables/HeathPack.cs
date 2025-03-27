@@ -4,23 +4,22 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class HeathPack : MonoBehaviour, ICollectable, IRecovery 
+public class HeathPack : InstantUseBase, IRecovery 
 {
     public int recoverHealth;
-    public GameObject player;
+    [SerializeField] private PlayerHealth ph;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (player == null)
         {
-            //find player to get components later in the script
+            //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
             Debug.Log("found player");
+            ph = player.GetComponent<PlayerHealth>();
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -28,7 +27,7 @@ public class HeathPack : MonoBehaviour, ICollectable, IRecovery
             OnPickup();
         }
     }
-    public void OnPickup()
+    public override void OnPickup()
     {
         Debug.Log("in pickup");
         //on pickup heal player
@@ -44,7 +43,7 @@ public class HeathPack : MonoBehaviour, ICollectable, IRecovery
     public void Recover(int a)
     {
         //heal player by recover health value
-        player.GetComponent<PlayerHealth>().Heal(a);
+        ph.Heal(a);
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class WeaponBase
 {
-
+    
 
     public Transform shootpoint;
     public IWeaponBehavior weaponBehavior;

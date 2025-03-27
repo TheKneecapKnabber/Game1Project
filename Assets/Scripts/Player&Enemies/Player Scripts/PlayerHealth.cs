@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    //equip to player
     public static event Action<int> OnHealthChange;
     public static event Action OnPlayerDeath;
 

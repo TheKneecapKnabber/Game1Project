@@ -2,31 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SAmmoPack : MonoBehaviour, ICollectable, IRecovery
+public class SAmmoPack : InstantUseBase, IRecovery
 {
     public int recoverSAmmo;
-    public GameObject player;
+    [SerializeField] private PlayerAmmo pa;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (player == null)
         {
-            //find player to get components later in the script
+            //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("found player");
+            Debug.Log("found player"); 
+            pa = player.GetComponent<PlayerAmmo>();
         }
     }
+    
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            OnPickup();
-        }
-    }
-    public void OnPickup()
+    public override void OnPickup()
     {
         Recover(recoverSAmmo);
 
@@ -37,6 +30,6 @@ public class SAmmoPack : MonoBehaviour, ICollectable, IRecovery
     public void Recover(int a)
     {
         //heal player by recover health value
-        player.GetComponent<PlayerAmmo>().GetSAmmo(a);
+        pa.GetSAmmo(a);
     }
 }
