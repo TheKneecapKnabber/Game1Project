@@ -11,8 +11,8 @@ public class PlayerAmmo : MonoBehaviour
     public int maxNAmmo = 120; //normal bullets
     public int maxSAmmo = 60; //shotgun bullets
 
-    [SerializeField]private int nAmmo;
-    [SerializeField]private int sAmmo;
+    [SerializeField]public int nAmmo {get; private set;}
+    [SerializeField] public int sAmmo { get; private set; }
 
 
     // Start is called before the first frame update
