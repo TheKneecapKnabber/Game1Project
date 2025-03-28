@@ -5,6 +5,7 @@ using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
+    //equip to canvas/ui
     [SerializeField] private TMP_Text healthText;
 
     private void OnEnable()

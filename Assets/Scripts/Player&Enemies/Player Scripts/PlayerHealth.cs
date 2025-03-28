@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    //equip to player
     public static event Action<int> OnHealthChange;
     public static event Action OnPlayerDeath;
 
@@ -37,5 +38,19 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+    public void Heal(int amt)
+    {
+        health += amt;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+            OnHealthChange?.Invoke(health);
+        }
+        else
+        {
+            OnHealthChange?.Invoke(health);
+        }
+        
     }
 }

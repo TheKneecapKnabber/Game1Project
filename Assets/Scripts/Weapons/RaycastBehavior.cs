@@ -13,4 +13,5 @@ public class RaycastBehavior : IWeaponBehavior
             Debug.Log("Hit " + hit.collider.name);
         }
     }
+    
 }
