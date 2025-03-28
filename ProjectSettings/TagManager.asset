@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collectable
   - WeaponPoint
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - AIAgent
   - AISensor
   - AITrigger
-  - 
+  - Enemy
   - 
   - 
   - 

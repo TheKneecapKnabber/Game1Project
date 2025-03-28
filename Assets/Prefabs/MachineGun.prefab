@@ -328,6 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8176801318140289420}
+  - component: {fileID: -1803671011542458437}
   m_Layer: 0
   m_Name: MachineGun
   m_TagString: Untagged
@@ -353,3 +354,27 @@ Transform:
   - {fileID: 3186768373524985995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1803671011542458437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809412020448584047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602a496842f0e214582d031cf26a2334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAmmo: {fileID: 0}
+  fireRate: 0
+  reloadTime: 3
+  magazineSize: 30
+  shotsLeft: 30
+  cam: {fileID: 0}
+  target: {fileID: 0}
+  shotCooldown: 1
+  damage: 10
+  targetDummy: {fileID: 0}
+  wc: {fileID: 0}
+  plAmmo: {fileID: 0}

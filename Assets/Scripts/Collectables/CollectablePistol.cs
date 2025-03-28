@@ -32,6 +32,13 @@ public class CollectablePistol : WeaponCollectableBase
             //give normal ammo
             player.GetComponent<PlayerAmmo>().GetNAmmo(giveAmmo);
             wc.hasPistol = true;
+            if(wc.currentWeapon == null)
+            {
+                plAmmo.pistolAmmo += 10;
+                wc.selectedWeapon = wc.weapons[0];
+                wc.currentWeapon = Instantiate(wc.selectedWeapon, wc.WeaponPos);
+                plAmmo.UpdatePistol();
+            }
         }
     }
 }

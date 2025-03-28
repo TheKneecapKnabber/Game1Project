@@ -1,33 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using UnityEditor;
 using UnityEngine;
 
-public class MachineGun : RaycastWeaponBase, IAutomatic, IShotSpread
+public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomatic
 {
-    public bool firing { get; set;}
+    private bool firing = false; //{ get; set;}
     float IShotSpread.spread { get; set; } = 3f;
-   
+    public bool shotCooldown = true;
+    //public int damage;
+    public TargetDummy targetDummy;
+    private bool reloadingMG = false;
+    public WeaponController wc;
+    public PlayerAmmo plAmmo;
+    
     void OnEnable()
     {
         WeaponController.Shoot += StartFiring;
         WeaponController.StopShoot += StopFiring;
-        WeaponController.Reload += CanReload;
+        //WeaponController.Reload += Reload;
         WeaponController.Delete += Despawn;
     }
     void OnDisable()
-    {
+    { 
         WeaponController.Shoot -= StartFiring;
         WeaponController.StopShoot -= StopFiring;
-        WeaponController.Reload += CanReload;
+        //WeaponController.Reload += Reload;
         WeaponController.Delete += Despawn;
     }
 
-    public override void Fire(Transform shootpoint)
+    void Awake()
     {
-        //base.Fire(shootpoint);
-        StartFiring();
+        shotsLeft = magazineSize;
+        if (wc == null)
+        {
+            wc = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponController>();
+        }
+        if (plAmmo == null)
+        {
+            plAmmo = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAmmo>();
+        }
     }
+
     public void StartFiring()
     {
         firing = true;
@@ -37,4 +52,69 @@ public class MachineGun : RaycastWeaponBase, IAutomatic, IShotSpread
     {
         firing = false;
     }
+
+    void Update()
+    {
+        shotsLeft = plAmmo.mgAmmo;
+        if (firing && shotCooldown && shotsLeft > 0 && !reloadingMG)
+        {
+            shotCooldown = false;
+            //Coroutine co = StartCoroutine(ShootMG());
+            ShootMachineGun();
+            plAmmo.mgAmmo -= 1;
+            plAmmo.UpdateMachinegun();
+            Invoke("ShootMG",0.1f);
+        }
+    }
+
+    private void ShootMG()
+    {
+        Debug.Log("test shot");
+        //yield return new WaitForSeconds(.1f);
+
+        shotCooldown = true;
+        //yield return null;
+    }
+
+    private void ShootMachineGun()
+    {
+        
+        Ray Shot = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
+        {
+            Debug.Log("Hit " + hit.collider.name);
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
+            {
+                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
+                targetDummy.TakeDamage(damage);
+            }
+        }
+    }
+
+    public void Reload()
+    {
+        reloadingMG = true;
+        Invoke("Reloading", reloadTime);
+    }
+    private void Reloading()
+    {
+        //yield return new WaitForSeconds(reloadTime);
+        if(magazineSize > shotsLeft && plAmmo.nAmmo >= (magazineSize - shotsLeft))
+        {
+            plAmmo.GetNAmmo(shotsLeft - magazineSize);
+            plAmmo.mgAmmo = magazineSize;
+            plAmmo.UpdateMachinegun();
+        }
+        else if(magazineSize > shotsLeft && plAmmo.nAmmo < (magazineSize - shotsLeft))
+        {
+            int newAmmo = plAmmo.nAmmo;
+            plAmmo.GetNAmmo(-plAmmo.nAmmo);
+            plAmmo.mgAmmo += newAmmo;
+            plAmmo.UpdateMachinegun();
+        }
+        reloadingMG = false;
+    }
+
 }

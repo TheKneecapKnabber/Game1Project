@@ -13,29 +13,37 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int health;
     public int damageAmount = 10;
 
+    public GameObject healthPack, hp;
+    public Transform hpLocation;
 
     private void Start()
     {
+        hpLocation = hp.transform;
         health = maxHealth;
         OnHealthChange?.Invoke(health);
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             TakeDamage(damageAmount);
         }
+        if (Input.GetKeyDown(KeyCode.Z) && hp == null)
+        {
+            hp = Instantiate(healthPack, hpLocation);
+        }
     }
 
-    private void TakeDamage(int amt)
+    public void TakeDamage(int amt)
     {
         health -= amt;
         OnHealthChange?.Invoke(health);
 
-        if(health < 0)
+        if(health <= 0)
         {
+            health = maxHealth;
             OnPlayerDeath?.Invoke();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

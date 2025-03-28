@@ -7,42 +7,58 @@ public class AmmoUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nAmmoText;
     [SerializeField] private TMP_Text sAmmoText;
+    public PlayerAmmo plAmmo;
+    public WeaponController wc;
 
     private void OnEnable()
     {
         PlayerAmmo.OnNAmmoChange += UpdateNAmmoUI;
         PlayerAmmo.OnSAmmoChange += UpdateSAmmoUI;
+        PlayerAmmo.OnMGChange += UpdateMgAmount;
+        PlayerAmmo.OnPistolChange += UpdatePistolAmount;
+        PlayerAmmo.OnSGChange += UpdateSgAmount;
     }
     private void OnDisable()
     {
         PlayerAmmo.OnNAmmoChange -= UpdateNAmmoUI;
         PlayerAmmo.OnSAmmoChange -= UpdateSAmmoUI;
+        PlayerAmmo.OnMGChange -= UpdateMgAmount;
+        PlayerAmmo.OnPistolChange -= UpdatePistolAmount;
+        PlayerAmmo.OnSGChange -= UpdateSgAmount;
     }
 
     private void UpdateNAmmoUI(int newNAmmo)
     {
-        if (newNAmmo == 0)
+        if(wc.selectedWeapon == wc.weapons[0])
         {
-            nAmmoText.enabled = false;
+            plAmmo.UpdatePistol();
         }
-        else
+        else if(wc.selectedWeapon == wc.weapons[1])
         {
-            nAmmoText.enabled = true;
-            nAmmoText.text = ($"Regular ammo: {newNAmmo}");
+            plAmmo.UpdateMachinegun();
         }
     }
 
     private void UpdateSAmmoUI(int newSAmmo)
     {
-        if(newSAmmo == 0)
+        if(wc.selectedWeapon == wc.weapons[0])
         {
-            sAmmoText.enabled = false;
-        }
-        else
-        {
-            sAmmoText.enabled = true;
-            sAmmoText.text = ($"Shotgun ammo: {newSAmmo}");
+            plAmmo.UpdateShotgun();
         }
     }
+
+    private void UpdateMgAmount(int curMgAmmo)
+    {
+        nAmmoText.text = ($"{curMgAmmo} / {plAmmo.nAmmo}");
+    }
+    private void UpdateSgAmount(int curSgAmmo)
+    {
+        nAmmoText.text = ($"{curSgAmmo} / {plAmmo.sAmmo}");
+    }
+    private void UpdatePistolAmount(int curPistolAmmo)
+    {
+        nAmmoText.text = ($"{curPistolAmmo} / {plAmmo.nAmmo}");
+    }
+
 
 }

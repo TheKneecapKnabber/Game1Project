@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class WeaponCollectableBase : CollectableBase
 {
     protected WeaponController wc;
+    protected PlayerAmmo plAmmo;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public abstract class WeaponCollectableBase : CollectableBase
             player = GameObject.FindGameObjectWithTag("Player");
             Debug.Log("found player");
             wc = player.GetComponent<WeaponController>();
+            plAmmo = player.GetComponent<PlayerAmmo>();
         }
     }
 

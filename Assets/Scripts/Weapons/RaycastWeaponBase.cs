@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class RaycastWeaponBase : WeaponBase
 {
+    /*
     public override void Fire(Transform shootpoint)
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f , 0f));
@@ -15,4 +16,5 @@ public abstract class RaycastWeaponBase : WeaponBase
         Vector3 direction = target - shootpoint.position;
 
     }
+    */
 }

@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   MachineGunPreFab: {fileID: 5809412020448584047, guid: e00f00719ef5b234182c0d2a2a3926b8, type: 3}
-  giveAmmo: 20
+  giveAmmo: 30
 --- !u!1 &5957106275625772437
 GameObject:
   m_ObjectHideFlags: 0
