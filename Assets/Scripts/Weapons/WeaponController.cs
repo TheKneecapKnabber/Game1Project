@@ -28,7 +28,10 @@ public class WeaponController : MonoBehaviour
         }
         WeaponPos = WeaponPoint.transform;
         currentWeapon = null;
-        
+        if (plAmmo == null)
+        {
+            plAmmo = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAmmo>();
+        }    
     }
 
     // Update is called once per frame
@@ -82,7 +85,7 @@ public class WeaponController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Reload?.Invoke();
+            currentWeapon.GetComponent<IReloadable>().Reload();
         }
     }
     public void SetSelectedWeapon(GameObject a)

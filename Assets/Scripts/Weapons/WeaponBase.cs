@@ -51,6 +51,20 @@ public abstract class WeaponBase : MonoBehaviour
     }
     public abstract void Fire(Transform shootpoint);
     
+    private void Reload()
+    {
+        reloading = true;
+        StartCoroutine(Reloading(reloadTime));
+    }
+    private IEnumerator Reloading(float reloadTime)
+    {
+        yield return new WaitForSeconds(reloadTime);
+        if(magazineSize > shotsLeft)
+        {
+            shotsLeft = magazineSize;
+        }
+        reloading = false;
+    }
     protected void Despawn()
     {
         Destroy(this.gameObject);

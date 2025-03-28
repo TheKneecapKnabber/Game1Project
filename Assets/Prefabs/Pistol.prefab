@@ -51,7 +51,7 @@ MonoBehaviour:
   fireRate: 0
   reloadTime: 2
   magazineSize: 10
-  shotsLeft: 0
+  shotsLeft: 10
   cam: {fileID: 0}
   target: {fileID: 0}
   damage: 25

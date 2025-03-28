@@ -370,7 +370,7 @@ MonoBehaviour:
   fireRate: 0
   reloadTime: 3
   magazineSize: 30
-  shotsLeft: 0
+  shotsLeft: 30
   cam: {fileID: 0}
   target: {fileID: 0}
   shotCooldown: 1

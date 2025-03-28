@@ -33,7 +33,7 @@ public class AmmoUI : MonoBehaviour
         {
             plAmmo.UpdatePistol();
         }
-        else
+        else if(wc.selectedWeapon == wc.weapons[1])
         {
             plAmmo.UpdateMachinegun();
         }
@@ -41,7 +41,10 @@ public class AmmoUI : MonoBehaviour
 
     private void UpdateSAmmoUI(int newSAmmo)
     {
-        plAmmo.UpdateShotgun();
+        if(wc.selectedWeapon == wc.weapons[0])
+        {
+            plAmmo.UpdateShotgun();
+        }
     }
 
     private void UpdateMgAmount(int curMgAmmo)

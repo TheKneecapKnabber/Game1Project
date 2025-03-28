@@ -4,7 +4,7 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
 
-public class MachineGun : RaycastWeaponBase, IShotSpread //IAutomatic
+public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomatic
 {
     private bool firing = false; //{ get; set;}
     float IShotSpread.spread { get; set; } = 3f;
@@ -59,19 +59,21 @@ public class MachineGun : RaycastWeaponBase, IShotSpread //IAutomatic
         if (firing && shotCooldown && shotsLeft > 0 && !reloadingMG)
         {
             shotCooldown = false;
-            StartCoroutine(ShootMG());
+            //Coroutine co = StartCoroutine(ShootMG());
+            ShootMachineGun();
+            plAmmo.mgAmmo -= 1;
+            plAmmo.UpdateMachinegun();
+            Invoke("ShootMG",0.1f);
         }
     }
 
-    private IEnumerator ShootMG()
+    private void ShootMG()
     {
         Debug.Log("test shot");
-        ShootMachineGun();
-        plAmmo.mgAmmo -= 1;
-        plAmmo.UpdateMachinegun();
-        yield return new WaitForSeconds(.1f);
+        //yield return new WaitForSeconds(.1f);
+
         shotCooldown = true;
-        yield return null;
+        //yield return null;
     }
 
     private void ShootMachineGun()
@@ -83,7 +85,7 @@ public class MachineGun : RaycastWeaponBase, IShotSpread //IAutomatic
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null)
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)
             {
                 targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();
                 targetDummy.TakeDamage(damage);
@@ -91,14 +93,14 @@ public class MachineGun : RaycastWeaponBase, IShotSpread //IAutomatic
         }
     }
 
-    private void Reload()
+    public void Reload()
     {
         reloadingMG = true;
-        StartCoroutine(Reloading(reloadTime));
+        Invoke("Reloading", reloadTime);
     }
-    private IEnumerator Reloading(float reloadTime)
+    private void Reloading()
     {
-        yield return new WaitForSeconds(reloadTime);
+        //yield return new WaitForSeconds(reloadTime);
         if(magazineSize > shotsLeft && plAmmo.nAmmo >= (magazineSize - shotsLeft))
         {
             plAmmo.GetNAmmo(shotsLeft - magazineSize);

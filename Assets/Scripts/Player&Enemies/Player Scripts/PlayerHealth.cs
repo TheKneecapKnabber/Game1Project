@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0)
         {
             health = maxHealth;
-            //OnPlayerDeath?.Invoke();
+            OnPlayerDeath?.Invoke();
             //Destroy(gameObject);
         }
 

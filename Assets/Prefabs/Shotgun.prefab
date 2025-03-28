@@ -265,7 +265,7 @@ MonoBehaviour:
   fireRate: 0
   reloadTime: 0.5
   magazineSize: 5
-  shotsLeft: 0
+  shotsLeft: 5
   cam: {fileID: 0}
   target: {fileID: 0}
   projectilePrefab: {fileID: 0}
