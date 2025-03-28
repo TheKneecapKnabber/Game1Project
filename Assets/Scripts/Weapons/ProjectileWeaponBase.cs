@@ -6,7 +6,8 @@ public abstract class ProjectileWeaponBase : WeaponBase
 {
     public GameObject projectilePrefab;
     public float projectileSpeed;
-
+    public Transform shootPoint;
+    /*
     public override void Fire(Transform shootPoint)
     {
         GameObject projectile = GameObject.Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
@@ -14,4 +15,6 @@ public abstract class ProjectileWeaponBase : WeaponBase
 
 
     }
+    */
+    
 }

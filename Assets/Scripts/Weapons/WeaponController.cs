@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     public static event Action Shoot;
     public static event Action StopShoot;
     public static event Action Delete;
-    public static event Action Reload;
+    //public static event Action Reload;
     public GameObject selectedWeapon;
     [SerializeField] private GameObject WeaponPoint;
     public Transform shootPoint;

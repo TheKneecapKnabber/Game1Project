@@ -9,7 +9,7 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
     private bool firing = false; //{ get; set;}
     float IShotSpread.spread { get; set; } = 3f;
     public bool shotCooldown = true;
-    public int damage;
+    //public int damage;
     public TargetDummy targetDummy;
     private bool reloadingMG = false;
     public WeaponController wc;
@@ -19,14 +19,14 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
     {
         WeaponController.Shoot += StartFiring;
         WeaponController.StopShoot += StopFiring;
-        WeaponController.Reload += Reload;
+        //WeaponController.Reload += Reload;
         WeaponController.Delete += Despawn;
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= StartFiring;
         WeaponController.StopShoot -= StopFiring;
-        WeaponController.Reload += Reload;
+        //WeaponController.Reload += Reload;
         WeaponController.Delete += Despawn;
     }
 
@@ -85,9 +85,9 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
             {
-                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();
+                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
                 targetDummy.TakeDamage(damage);
             }
         }

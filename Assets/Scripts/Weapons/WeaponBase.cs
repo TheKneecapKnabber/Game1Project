@@ -10,8 +10,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     public float fireRate, reloadTime;
     public int magazineSize, shotsLeft;
-
-    bool reloading = false;
+    public int damage;
+    
 
     public Camera cam;
     public Transform target;
@@ -26,34 +26,27 @@ public abstract class WeaponBase : MonoBehaviour
 
     private void OnEnable()
     {
-        WeaponController.Shoot += Use;
-        WeaponController.Reload += CanReload;
+       // WeaponController.Shoot += Use;
+        //WeaponController.Reload += CanReload;
         WeaponController.Delete += Despawn;
     }
     private void OnDisable()
     {
-        WeaponController.Shoot -= Use;
-        WeaponController.Reload -= CanReload;
+        //WeaponController.Shoot -= Use;
+        //WeaponController.Reload -= CanReload;
         WeaponController.Delete -= Despawn;
     }
 
-    private void Use()
-    {
-        if (!reloading && shotsLeft > 0)
-        {
-            Fire(shootpoint);
-        }
-        
-    }
+   
     protected void CanReload()
     {
 
     }
-    public abstract void Fire(Transform shootpoint);
+    //public abstract void Fire(Transform shootpoint);
     
     private void Reload()
     {
-        reloading = true;
+       
         StartCoroutine(Reloading(reloadTime));
     }
     private IEnumerator Reloading(float reloadTime)
@@ -63,7 +56,7 @@ public abstract class WeaponBase : MonoBehaviour
         {
             shotsLeft = magazineSize;
         }
-        reloading = false;
+        
     }
     protected void Despawn()
     {

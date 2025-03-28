@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &47661266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6436470412614774416, guid: 8fb474f2ed24f844cb9f84d9c0405227, type: 3}
-  m_PrefabInstance: {fileID: 8720434580567611428}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &47661268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47661266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea8e7b8cdc583c4595cfe57474d1409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAmmo: {fileID: 0}
-  fireRate: 0
-  reloadTime: 0
-  magazineSize: 0
-  shotsLeft: 0
-  cam: {fileID: 0}
-  target: {fileID: 0}
-  projectilePrefab: {fileID: 8035234565324354145, guid: 9e2f5acf04c143740bfb1b97ef4a920a, type: 3}
-  projectileSpeed: 50
-  damage: 0
-  shotCooldown: 1
-  targetDummy: {fileID: 0}
-  wc: {fileID: 0}
-  plAmmo: {fileID: 0}
 --- !u!1 &110280521
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +774,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1406,10 +1375,10 @@ MonoBehaviour:
   reloadTime: 0
   magazineSize: 0
   shotsLeft: 0
+  damage: 0
   cam: {fileID: 0}
   target: {fileID: 0}
   shotCooldown: 1
-  damage: 0
   targetDummy: {fileID: 0}
   wc: {fileID: 0}
   plAmmo: {fileID: 0}
@@ -1940,9 +1909,9 @@ MonoBehaviour:
   reloadTime: 0
   magazineSize: 0
   shotsLeft: 0
+  damage: 0
   cam: {fileID: 0}
   target: {fileID: 0}
-  damage: 0
   shotCooldown: 1
   targetDummy: {fileID: 0}
   wc: {fileID: 0}
@@ -2438,8 +2407,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3089,6 +3058,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 1143
       objectReference: {fileID: 0}
+    - target: {fileID: 8394218133807458484, guid: 4a71fd70482426e40a29ea22c6c1e931, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.504
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3177,6 +3150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 961145921826249834, guid: 8fb474f2ed24f844cb9f84d9c0405227, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.888
+      objectReference: {fileID: 0}
     - target: {fileID: 6326104124425446922, guid: 8fb474f2ed24f844cb9f84d9c0405227, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3228,10 +3205,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6436470412614774416, guid: 8fb474f2ed24f844cb9f84d9c0405227, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 47661268}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb474f2ed24f844cb9f84d9c0405227, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int amt)
+    public void TakeDamage(int amt)
     {
         health -= amt;
         OnHealthChange?.Invoke(health);

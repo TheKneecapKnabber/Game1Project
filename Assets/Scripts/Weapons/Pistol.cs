@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pistol : RaycastWeaponBase, IReloadable
 {
     private bool reloadingPistol = false;
-    public int damage;
+    //public int damage;
     public bool shotCooldown = true;
     public TargetDummy targetDummy;
     public WeaponController wc;
@@ -14,13 +14,13 @@ public class Pistol : RaycastWeaponBase, IReloadable
     void OnEnable()
     {
         WeaponController.Shoot += ShootWep;
-        WeaponController.Reload += Reload;
+        
         WeaponController.Delete += Despawn;
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= ShootWep;
-        WeaponController.Reload += Reload;
+        
         WeaponController.Delete += Despawn;
     }
 
@@ -71,9 +71,9 @@ public class Pistol : RaycastWeaponBase, IReloadable
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
             {
-                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();
+                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
                 targetDummy.TakeDamage(damage);
             }
         }
