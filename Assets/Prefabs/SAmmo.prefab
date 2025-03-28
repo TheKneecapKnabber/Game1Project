@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7982821207015599140}
   m_Layer: 0
   m_Name: SAmmo
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,8 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda60a8e7a57c5842ace54b5e9686edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverSAmmo: 20
   player: {fileID: 0}
+  recoverSAmmo: 20
+  pa: {fileID: 0}
 --- !u!1 &7302160230563084174
 GameObject:
   m_ObjectHideFlags: 0

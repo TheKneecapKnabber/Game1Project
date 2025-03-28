@@ -12,7 +12,7 @@ public abstract class CollectableBase : MonoBehaviour
         {
             //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("found player");
+            //Debug.Log("found player");
         }
     }
     public abstract void OnPickup();

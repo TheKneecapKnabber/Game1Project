@@ -2,28 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponBase
+public abstract class WeaponBase : MonoBehaviour
 {
+
+
+    [SerializeField] public Transform shootpoint { get; private set; }
+
+    public float fireRate, reloadTime;
+    public int magazineSize, shotsLeft;
+
+    bool reloading = false;
+
+    public Camera cam;
+    public Transform target;
+
     
-
-    public Transform shootpoint;
+    
     public IWeaponBehavior weaponBehavior;
-
-    public void SetWeaponBehavior(IWeaponBehavior newBehavior)
+    private void Start()
     {
-        weaponBehavior = newBehavior;
-
+        cam = Camera.main;
     }
 
-    public void Use()
+    private void OnEnable()
     {
-        if (weaponBehavior != null)
-        {
-            weaponBehavior.Fire(shootpoint);
-        }
-        else
-        {
-            Debug.Log("no behavior set");
-        }
+        WeaponController.Shoot += Use;
+        WeaponController.Reload += CanReload;
+        WeaponController.Delete += Despawn;
     }
+    private void OnDisable()
+    {
+        WeaponController.Shoot -= Use;
+        WeaponController.Reload -= CanReload;
+        WeaponController.Delete -= Despawn;
+    }
+
+    private void Use()
+    {
+        if (!reloading && shotsLeft > 0)
+        {
+            Fire(shootpoint);
+        }
+        
+    }
+    protected void CanReload()
+    {
+
+    }
+    public abstract void Fire(Transform shootpoint);
+    
+    private void Reload()
+    {
+        reloading = true;
+        StartCoroutine(Reloading(reloadTime));
+    }
+    private IEnumerator Reloading(float reloadTime)
+    {
+        yield return new WaitForSeconds(reloadTime);
+        shotsLeft = magazineSize;
+        reloading = false;
+    }
+    protected void Despawn()
+    {
+        Destroy(this.gameObject);
+    }
+
+    
 }

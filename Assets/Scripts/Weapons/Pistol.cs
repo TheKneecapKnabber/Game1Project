@@ -2,23 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : WeaponBase 
+public class Pistol : RaycastWeaponBase 
 {
     private GameObject player;
 
-    private void OnEnable()
-    {
-        //WeaponController.Shoot += Use();
-    }
-    void OnDisable()
-    {
-        //WeaponController.Shoot -= Use();
-    }
-
-
-
-
-    public void Fire(Transform shootPoint)
+   
+    public override void Fire(Transform shootPoint)
     {
         RaycastHit hit;
 
@@ -26,6 +15,7 @@ public class Pistol : WeaponBase
         {
             Debug.Log("Hit " + hit.collider.name);
         }
+        
     }
     
 
