@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour
+public class Pistol : RaycastWeaponBase 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private GameObject player;
 
-    // Update is called once per frame
-    void Update()
+   
+    public override void Fire(Transform shootPoint)
     {
+        RaycastHit hit;
+
+        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit))
+        {
+            Debug.Log("Hit " + hit.collider.name);
+        }
         
     }
+    
+
 }
