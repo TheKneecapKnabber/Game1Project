@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  recoverNAmmo: 60
+  recoverNAmmo: 40
   pa: {fileID: 0}
 --- !u!1 &8562917737403112980
 GameObject:

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-
-
     [SerializeField] public Transform shootpoint { get; private set; }
+
+    public PlayerAmmo playerAmmo;
 
     public float fireRate, reloadTime;
     public int magazineSize, shotsLeft;
@@ -51,17 +51,6 @@ public abstract class WeaponBase : MonoBehaviour
     }
     public abstract void Fire(Transform shootpoint);
     
-    private void Reload()
-    {
-        reloading = true;
-        StartCoroutine(Reloading(reloadTime));
-    }
-    private IEnumerator Reloading(float reloadTime)
-    {
-        yield return new WaitForSeconds(reloadTime);
-        shotsLeft = magazineSize;
-        reloading = false;
-    }
     protected void Despawn()
     {
         Destroy(this.gameObject);

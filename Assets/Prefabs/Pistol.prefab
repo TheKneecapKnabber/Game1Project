@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506782378421523505}
+  - component: {fileID: 4007309452627105728}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -34,6 +35,30 @@ Transform:
   - {fileID: 7474374711577389959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4007309452627105728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2791875123176544302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3caed1a8b58fd4e821126c34d1d971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAmmo: {fileID: 0}
+  fireRate: 0
+  reloadTime: 2
+  magazineSize: 10
+  shotsLeft: 0
+  cam: {fileID: 0}
+  target: {fileID: 0}
+  damage: 25
+  shotCooldown: 1
+  targetDummy: {fileID: 0}
+  wc: {fileID: 0}
+  plAmmo: {fileID: 0}
 --- !u!1 &3062125702529763091
 GameObject:
   m_ObjectHideFlags: 0
