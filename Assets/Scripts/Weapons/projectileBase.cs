@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+[RequireComponent(typeof(Rigidbody))]
 public class projectileBase : MonoBehaviour
 {
-    public int damage;
+    public int damage = 1;
     public Rigidbody rb;
     //public string targetTag;
     private void Start()
@@ -17,31 +17,30 @@ public class projectileBase : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         
-        if ( other.gameObject.tag == "Enemy")
+        if ( other.gameObject.tag == "Enemy"|| other.gameObject.tag == "Player")
         {
-           DealDamage(damage, other); 
+           DealDamage(other); 
         }
-        
+        Destroy(gameObject);
         
         //DealDamage(damage, other);
-        if( other.gameObject.tag != "Projectile")
-        {
-            Destroy(gameObject, 0.05f);
-        }
+        
         
 
     }
-    public void DealDamage(int damage, Collision a)
+    public void DealDamage(Collision a)
     {
+        //Debug.Log("in dealing damage");
         if (a.gameObject.tag == "Enemy")
         {
+            //Debug.Log("hit enemy");
             a.gameObject.GetComponent<TargetDummy>().TakeDamage(damage);
         }
         else if (a.gameObject.tag == "Player")
         {
             a.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-
+        Destroy(this.gameObject, 0.5f);
 
     }
     

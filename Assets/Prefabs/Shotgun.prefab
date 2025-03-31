@@ -254,13 +254,13 @@ MonoBehaviour:
   cam: {fileID: 0}
   target: {fileID: 0}
   projectilePrefab: {fileID: 8035234565324354145, guid: 9e2f5acf04c143740bfb1b97ef4a920a, type: 3}
-  projectileSpeed: 2
+  projectileSpeed: 10
   shootPoint: {fileID: 961145921826249834}
   shotCooldown: 1
   targetDummy: {fileID: 0}
   wc: {fileID: 0}
   plAmmo: {fileID: 0}
-  spread: 0.01
+  spread: 5
 --- !u!1 &9053312680872466943
 GameObject:
   m_ObjectHideFlags: 0
