@@ -34,7 +34,7 @@ public class projectileBase : MonoBehaviour
         if (a.gameObject.tag == "Enemy")
         {
             //Debug.Log("hit enemy");
-            a.gameObject.GetComponent<TargetDummy>().TakeDamage(damage);
+            a.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
         }
         else if (a.gameObject.tag == "Player")
         {

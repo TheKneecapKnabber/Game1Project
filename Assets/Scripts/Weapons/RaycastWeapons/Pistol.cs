@@ -7,7 +7,7 @@ public class Pistol : RaycastWeaponBase, IReloadable
     private bool reloadingPistol = false;
     //public int damage;
     public bool shotCooldown = true;
-    public TargetDummy targetDummy;
+    public EnemyBase Enemy;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
 
@@ -71,10 +71,10 @@ public class Pistol : RaycastWeaponBase, IReloadable
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<EnemyBase>() != null)//targetdummy will be changed to enemybase
             {
-                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
-                targetDummy.TakeDamage(damage);
+                Enemy = hit.collider.gameObject.GetComponent<EnemyBase>();//targetdummy will be changed to enemybase
+                Enemy.TakeDamage(damage);
             }
         }
     }
