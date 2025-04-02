@@ -247,10 +247,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAmmo: {fileID: 0}
   fireRate: 0
-  reloadTime: 0.5
+  reloadTime: 1
   magazineSize: 5
   shotsLeft: 5
-  damage: 5
+  damage: 45
   cam: {fileID: 0}
   target: {fileID: 0}
   projectilePrefab: {fileID: 8035234565324354145, guid: 9e2f5acf04c143740bfb1b97ef4a920a, type: 3}

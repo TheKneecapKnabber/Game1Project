@@ -6,10 +6,11 @@ using UnityEngine;
 public class AmmoUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nAmmoText;
-    [SerializeField] private TMP_Text sAmmoText;
+    [SerializeField] private TMP_Text weaponNameText;
     public PlayerAmmo plAmmo;
     public WeaponController wc;
-
+    public GameObject pistolImage, mgImage, sgImage, curWep;
+    public GameObject nBulletImage, sBulletImage;
     private void OnEnable()
     {
         PlayerAmmo.OnNAmmoChange += UpdateNAmmoUI;
@@ -50,14 +51,26 @@ public class AmmoUI : MonoBehaviour
     private void UpdateMgAmount(int curMgAmmo)
     {
         nAmmoText.text = ($"{curMgAmmo} / {plAmmo.nAmmo}");
+        curWep.transform.position = mgImage.transform.position;
+        weaponNameText.text = "Machine Gun";
+        nBulletImage.SetActive(true);
+        sBulletImage.SetActive(false);
     }
     private void UpdateSgAmount(int curSgAmmo)
     {
         nAmmoText.text = ($"{curSgAmmo} / {plAmmo.sAmmo}");
+        curWep.transform.position = sgImage.transform.position;
+        weaponNameText.text = "Shotgun";
+        nBulletImage.SetActive(false);
+        sBulletImage.SetActive(true);
     }
     private void UpdatePistolAmount(int curPistolAmmo)
     {
         nAmmoText.text = ($"{curPistolAmmo} / {plAmmo.nAmmo}");
+        curWep.transform.position = pistolImage.transform.position;
+        weaponNameText.text = "Pistol";
+        nBulletImage.SetActive(true);
+        sBulletImage.SetActive(false);
     }
 
 

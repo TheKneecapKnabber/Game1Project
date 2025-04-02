@@ -7,7 +7,7 @@ public class CollectableShotgun : WeaponCollectableBase
     [SerializeField] private GameObject shotgunPreFab;
     [SerializeField] private int giveAmmo = 5; //give ammo should be clip size
 
-
+    public GameObject shotgunImage, curImage;
 
 
 
@@ -28,8 +28,11 @@ public class CollectableShotgun : WeaponCollectableBase
             //give shotgun ammo
             player.GetComponent<PlayerAmmo>().GetSAmmo(giveAmmo);
             wc.hasShotgun = true;
+            shotgunImage.SetActive(true);
             if(wc.currentWeapon == null)
             {
+                curImage.SetActive(true);
+                curImage.transform.position = shotgunImage.transform.position;
                 plAmmo.shotgunAmmo += 5;
                 wc.selectedWeapon = wc.weapons[2];
                 wc.currentWeapon = Instantiate(wc.selectedWeapon, wc.WeaponPos);

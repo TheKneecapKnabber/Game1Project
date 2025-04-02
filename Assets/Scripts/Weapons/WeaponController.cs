@@ -20,6 +20,8 @@ public class WeaponController : MonoBehaviour
     public GameObject currentWeapon;
     public PlayerAmmo plAmmo;
 
+    
+
     void Start()
     {
         if (WeaponPoint == null)
@@ -47,6 +49,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdatePistol();
+
             }
             
         }
@@ -60,6 +63,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateMachinegun();
+                
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -72,6 +76,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateShotgun();
+                
             }
         }
 
