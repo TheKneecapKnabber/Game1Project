@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float moveSpeed; // patrol speed
     [SerializeField] protected float chaseSpeed;// chasing the player
     [SerializeField] protected float waitTime;//time inbetween actions
+    [SerializeField] protected float attackRange;
     public bool seesPlayer, chasingPlayer, patrolling;
 
     //amount of time on the search action (might not be needed since animation could help)
