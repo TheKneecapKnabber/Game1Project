@@ -12,9 +12,9 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     public TargetDummy targetDummy;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
-    //int bullets = 9;
+    int bullets = 10;
     public float spread = 1f;
-    //private float spreadX, spreadY;
+    private float spreadX, spreadY, spreadZ;
 
     void OnEnable()
     {
@@ -59,7 +59,7 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
 
     private IEnumerator ShootShotgun()
     {
-        Debug.Log("test shot");
+        //Debug.Log("test shot");
         ShootShotgunWep();
         plAmmo.shotgunAmmo -= 1;
         plAmmo.UpdateShotgun();
@@ -73,9 +73,9 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     {
         Ray Shot = cam.ScreenPointToRay(Input.mousePosition);
         //Ray Shot = cam.ViewportPointToRay(new Vector3(0.5f,0.5f,0.5f));
-        RaycastHit hit;
+        //RaycastHit hit;
 
-        
+        /*
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
@@ -85,14 +85,20 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
                 targetDummy.TakeDamage(damage);
             }
         }
+        */
         
-        /*
         //so the bullets come from the gun to where the player is looking
         Vector3 target;
-        if (Physics.Raycast(Shot, out hit)) 
+        /*
+        if (Physics.Raycast(Shot, out hit))
+        {
             target = hit.point;
-        else 
-            target = Shot.GetPoint(100);
+            Debug.Log(hit.distance);
+        }
+        else
+            target = Shot.GetPoint(50);
+        */
+        target = Shot.GetPoint(50);
 
         Vector3 direction = target - shootPoint.position;
         Debug.DrawRay(shootPoint.position, direction);
@@ -102,7 +108,8 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
         {
             spreadX = Random.Range(-spread, spread);
             spreadY = Random.Range(-spread, spread);
-            Vector3 dirSpread = direction + new Vector3(spreadX, spreadY);
+            spreadZ = Random.Range(-spread, spread);
+            Vector3 dirSpread = direction + new Vector3(spreadX, spreadY, spreadZ);
 
             GameObject curBullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             curBullet.transform.forward = dirSpread.normalized;
@@ -112,7 +119,7 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
             curBullet.GetComponent<projectileBase>().damage = damage; //set the projectile damage
 
         }
-        */
+        
         
         
     }
