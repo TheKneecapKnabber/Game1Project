@@ -20,13 +20,7 @@ public class HeathPack : InstantUseBase, IRecovery
         }
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            OnPickup();
-        }
-    }
+    
     public override void OnPickup()
     {
         Debug.Log("in pickup");
