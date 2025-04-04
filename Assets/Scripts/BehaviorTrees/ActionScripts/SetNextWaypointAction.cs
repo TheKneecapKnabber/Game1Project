@@ -1,7 +1,7 @@
 ﻿using BehaviorTree;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Profiling;
+
 using UnityEngine;
 using XNode;
 
