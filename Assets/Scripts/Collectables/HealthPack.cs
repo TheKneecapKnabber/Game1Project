@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class HeathPack : InstantUseBase, IRecovery 
+public class HealthPack : InstantUseBase, IRecovery 
 {
     public int recoverHealth;
     [SerializeField] private PlayerHealth ph;
@@ -16,6 +16,10 @@ public class HeathPack : InstantUseBase, IRecovery
             //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
             Debug.Log("found player");
+            ph = player.GetComponent<PlayerHealth>();
+        }
+        else
+        {
             ph = player.GetComponent<PlayerHealth>();
         }
     }

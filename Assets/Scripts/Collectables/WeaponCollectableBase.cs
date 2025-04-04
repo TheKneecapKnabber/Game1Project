@@ -17,7 +17,13 @@ public abstract class WeaponCollectableBase : CollectableBase
             wc = player.GetComponent<WeaponController>();
             plAmmo = player.GetComponent<PlayerAmmo>();
         }
+        else
+        {
+            wc = player.GetComponent<WeaponController>();
+            plAmmo = player.GetComponent<PlayerAmmo>();
+        }
     }
+    
 
     public override void OnPickup()
     {

@@ -9,7 +9,7 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     private bool shooting = false;
     //public int damage;
     public bool shotCooldown = true;
-    public TargetDummy targetDummy;
+    public EnemyBase EnemyBase;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
     int bullets = 10;

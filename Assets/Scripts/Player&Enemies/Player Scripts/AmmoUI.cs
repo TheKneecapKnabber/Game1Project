@@ -6,7 +6,7 @@ using UnityEngine;
 public class AmmoUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nAmmoText;
-    [SerializeField] private TMP_Text sAmmoText;
+    //[SerializeField] private TMP_Text sAmmoText;
     public PlayerAmmo plAmmo;
     public WeaponController wc;
 
@@ -41,7 +41,7 @@ public class AmmoUI : MonoBehaviour
 
     private void UpdateSAmmoUI(int newSAmmo)
     {
-        if(wc.selectedWeapon == wc.weapons[0])
+        if(wc.selectedWeapon == wc.weapons[2])//has to match the shotgun slot
         {
             plAmmo.UpdateShotgun();
         }

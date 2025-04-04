@@ -6,7 +6,7 @@ public abstract class CollectableBase : MonoBehaviour
 {
     public GameObject player;
 
-    void Start()
+    private void Awake()
     {
         if (player == null)
         {
