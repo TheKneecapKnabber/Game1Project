@@ -12,6 +12,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float waitTime;//time inbetween actions
     [SerializeField] protected float attackRange;
     public bool seesPlayer, chasingPlayer, patrolling;
+    public List<Transform> Waypoints;
+    public int WaypointIndex;
 
     //amount of time on the search action (might not be needed since animation could help)
     [SerializeField] protected float searchingTime;

@@ -6,5 +6,9 @@ interface IPatrol
 {
     //patrolpoint list
     //patrol index
+    IEnumerator Patrol(List<Transform> waypoints, int waypointIndex) 
+    {
+        yield return null;
+    }
 
 }
