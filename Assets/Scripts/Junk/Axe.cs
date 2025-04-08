@@ -9,7 +9,7 @@ public class Axe : Weapon, IDamageable, IMeleeable, IThrowable
     {
         Debug.Log("Axe was used.");
     }
-    public void ReduceDurablility(int damage)
+    public void TakeDamage(int damage)
     {
         durability -= damage;
     }

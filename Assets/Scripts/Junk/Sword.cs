@@ -11,7 +11,7 @@ public class Sword : Weapon, IDamageable, IMeleeable
         Debug.Log("Sword was used.");
     }
 
-    public void ReduceDurablility(int damage)
+    public void TakeDamage(int damage)
     {
         durability -= damage;
     }

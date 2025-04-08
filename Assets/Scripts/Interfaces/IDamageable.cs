@@ -4,7 +4,7 @@ using UnityEngine;
 
 interface IDamageable 
 {
-    public void ReduceDurablility(int damage);
+    public void TakeDamage(int damage);
 
     
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int health;
     [SerializeField] protected int maxHealth; 
@@ -29,8 +29,13 @@ public abstract class EnemyBase : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            health = maxHealth;
+            OnDeath();
         }
     }
     public abstract void Attack();
+
+    public virtual void OnDeath()
+    {
+        Destroy(this.gameObject);
+    }
 }

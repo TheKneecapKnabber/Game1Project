@@ -1,3 +1,4 @@
+using AICore;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using UnityEngine.AI;
 public class Guard : EnemyBase, IPatrol, ILook, IChase
 {
     //needed for movement
-    private NavMeshAgent navAgent;
+    private NavMeshAgent _navAgent;
 
     //needed patrol variables
     public List<Transform> waypoints;
@@ -20,8 +21,8 @@ public class Guard : EnemyBase, IPatrol, ILook, IChase
     void Start()
     {
         indexLimit = waypoints.Count();
-        navAgent = GetComponent<NavMeshAgent>();
-        navAgent.speed = moveSpeed;
+        _navAgent = GetComponent<NavMeshAgent>();
+        _navAgent.speed = moveSpeed;
         waypointIndex = 0;
         patrolling = true;
          
@@ -39,11 +40,11 @@ public class Guard : EnemyBase, IPatrol, ILook, IChase
     public void NextPoint()//sets the next patrol point
     {
         waypointIndex = (waypointIndex + 1) % waypoints.Count();
-        navAgent.SetDestination(waypoints[waypointIndex].position);
+        _navAgent.SetDestination(waypoints[waypointIndex].position);
     }
     public void Patroling()//patrol from point to point
     {
-        if (navAgent.remainingDistance <= navAgent.stoppingDistance)
+        if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
         {
 
             NextPoint();
@@ -51,11 +52,11 @@ public class Guard : EnemyBase, IPatrol, ILook, IChase
     }
     public void Chase(Vector3 player) // chase after the player until you can attack
     {
-        navAgent.speed = chaseSpeed;
+        _navAgent.speed = chaseSpeed;
         chasingPlayer = true;
         StartCoroutine(StopChase(10));
-        navAgent.SetDestination(player);
-        if (navAgent.remainingDistance <= attackRange)
+        _navAgent.SetDestination(player);
+        if (_navAgent.remainingDistance <= attackRange)
         {
             Attack();
         }

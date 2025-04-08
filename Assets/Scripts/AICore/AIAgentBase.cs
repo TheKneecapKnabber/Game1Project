@@ -24,7 +24,7 @@ namespace AICore
         [SerializeField] protected Target _visualTarget = new Target();
 
         protected NavMeshAgent _navAgent;
-        protected bool _hasReachedDestination = false;
+        [SerializeField] protected bool _hasReachedDestination = false;
 
         public AITrigger GetAITrigger { get { return _trigger; }  }
         public NavMeshAgent GetNavAgent { get { return _navAgent; } }
