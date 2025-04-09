@@ -3,78 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
-public class Guard : EnemyBase, IPatrol, ILook, IChase
+
+
+
+
+
+public class Guard : EnemyBase
 {
-    //needed for movement
-    private NavMeshAgent _navAgent;
-
-    //needed patrol variables
-    public List<Transform> waypoints;
-    [SerializeField] private int waypointIndex;
-    private int indexLimit;// how high the index can be before reset to 0
-   
+       
     //needed for attack with ranged weapon
-    Transform shootPoint;
-    
+    [SerializeField] private Transform shootPoint;
+    public GameObject projectilePrefab;
+    public float projectileSpeed;
+    [SerializeField] private float timeBetweenShots;
+    private bool shot = false;
 
-    void Start()
+    public override void Attack() 
     {
-        indexLimit = waypoints.Count();
-        _navAgent = GetComponent<NavMeshAgent>();
-        _navAgent.speed = moveSpeed;
-        waypointIndex = 0;
-        patrolling = true;
-         
-    }
-    void Update()
-    {
-        if (patrolling)
+        
+       
+        if (!shot)
         {
-            //Debug.Log(navAgent.remainingDistance);
-            Patroling();
+            StartCoroutine(Shoot());
         }
+        //shoot projectile from gun to player
+        Debug.Log("Attack");
         
        
     }
-    public void NextPoint()//sets the next patrol point
+    IEnumerator Shoot()
     {
-        waypointIndex = (waypointIndex + 1) % waypoints.Count();
-        _navAgent.SetDestination(waypoints[waypointIndex].position);
-    }
-    public void Patroling()//patrol from point to point
-    {
-        if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
-        {
-
-            NextPoint();
-        }
-    }
-    public void Chase(Vector3 player) // chase after the player until you can attack
-    {
-        _navAgent.speed = chaseSpeed;
-        chasingPlayer = true;
-        StartCoroutine(StopChase(10));
-        _navAgent.SetDestination(player);
-        if (_navAgent.remainingDistance <= attackRange)
-        {
-            Attack();
-        }
+        //set shot equal to true
+        shot = true;
         
-    }
-    public void LookingForPlayer(Vector3 player) //go to last known location of the player and looks around
-    {
+        //shoot projectile
 
-    }
-    IEnumerator StopChase(int time)
-    {
-        yield return new WaitForSeconds(time);
-        chasingPlayer = false;
-        patrolling = true;
+        
+        //wait timeBetweenShots
+        yield return new WaitForSeconds(timeBetweenShots);
+
+        //reset shot bool
+        shot = false;
         yield return null;
-    }
-    public override void Attack() 
-    {
-        Debug.Log("Attack");
     }
 }

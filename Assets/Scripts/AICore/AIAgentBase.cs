@@ -86,7 +86,7 @@ namespace AICore
             {
                 if (IsColliderVisible(other))
                 {
-                    Debug.Log("I see the player");
+                    //Debug.Log("I see the player");
                     _visualTarget.Set(other.transform.position, other,
                         Vector3.Distance(transform.position, other.transform.position),
                         Time.time, TargetType.Visual);
