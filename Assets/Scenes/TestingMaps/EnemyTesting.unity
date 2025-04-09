@@ -1260,7 +1260,7 @@ MonoBehaviour:
   chaseSpeed: 10
   waitSec: 1
   chaseTimeSec: 10
-  attackRange: 10
+  attackRange: 5
   alerted: 0
   chasingPlayer: 0
   patrolling: 0
@@ -1279,6 +1279,10 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   damage: 5
+  shootPoint: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0
+  timeBetweenShots: 0
 --- !u!1 &1977067307
 GameObject:
   m_ObjectHideFlags: 0
