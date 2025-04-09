@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 
@@ -17,6 +18,9 @@ public class Guard : EnemyBase
     public float projectileSpeed;
     [SerializeField] private float timeBetweenShots;
     private bool shot = false;
+    [SerializeField] private float spread = 0f;
+    private float spreadX, spreadY, spreadZ;
+    [SerializeField] private EnemyAI ai;
 
     public override void Attack() 
     {
@@ -35,12 +39,23 @@ public class Guard : EnemyBase
     {
         //set shot equal to true
         shot = true;
-        
-        //shoot projectile
 
-        
+        //shoot projectile
+        Vector3 direction = ai.GetVisualTargetPosition - shootPoint.position;
+
         //wait timeBetweenShots
-        yield return new WaitForSeconds(timeBetweenShots);
+       
+        spreadX = Random.Range(-spread, spread);
+        spreadY = Random.Range(-spread, spread);
+        spreadZ = Random.Range(-spread, spread);
+        Vector3 dirSpread = direction + new Vector3(spreadX, spreadY, spreadZ);
+
+        GameObject curBullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+        curBullet.transform.forward = dirSpread.normalized;
+
+
+        curBullet.GetComponent<Rigidbody>().velocity = (dirSpread.normalized * projectileSpeed);
+        curBullet.GetComponent<projectileBase>().damage = damage; //set the projectile damage
 
         //reset shot bool
         shot = false;

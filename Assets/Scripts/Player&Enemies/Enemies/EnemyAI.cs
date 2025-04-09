@@ -16,7 +16,7 @@ namespace AICore
         [SerializeField] private float waitSec = 1.0f;
         public float chaseTimeSec = 10.0f;
         public float attackRange;// take distance from target
-        public bool alerted, chasingPlayer, patrolling;
+        public bool lostPlayer, chasingPlayer, patrolling;
 
         protected override void Start()
         {
@@ -30,6 +30,7 @@ namespace AICore
             }
 
         }
+        public Vector3 GetVisualTargetPosition { get { return _visualTarget.GetPosition; } }
         void Update()
         {
             if (patrolling)
@@ -112,10 +113,19 @@ namespace AICore
         IEnumerator Looking()// stops and looks for the player if see player chase, if not patrol
         {
             //animation
-            
+            Vector3 startRot = _navAgent.transform.rotation.eulerAngles;
             Debug.Log("looking one way");
+            while (true)
+            {
+                gameObject.transform.Rotate(0, .0001f, 0, Space.Self);
+                
+                if ((_navAgent.transform.rotation.eulerAngles - startRot).y >= 90f)
+                { 
+                    break; 
+                }//rotation compared to starting rotation is 90 degrees
+                yield return null;
+            }
             
-            gameObject.transform.Rotate(0, .25f, 0, Space.Self);
             if (_visualTarget.GetTargetType != TargetType.Visual)
             {
                 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class TargetDummy : EnemyBase, IEnemy
+public class TargetDummy : EnemyBase
 {
     
     public TMP_Text healthText;
