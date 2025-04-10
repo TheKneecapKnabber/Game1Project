@@ -10,7 +10,7 @@ public class CollectableMachineGun : WeaponCollectableBase
 
     public override void Equip()
     {
-        if (wc.hasMachineGun)//has pistol is a bool
+        if (wc.hasMachineGun)//has Machine Gun is a bool
         {
             //give normal ammo
             plAmmo.GetNAmmo(giveAmmo);

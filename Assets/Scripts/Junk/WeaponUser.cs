@@ -33,7 +33,7 @@ public class WeaponUser : MonoBehaviour
                 selectedWeapon.Attack();
                 if (selectedWeapon is IDamageable damageAble)
                 {
-                    damageAble.ReduceDurablility(1);
+                    damageAble.TakeDamage(1);
                 }
             }
 
@@ -47,7 +47,7 @@ public class WeaponUser : MonoBehaviour
 
                 if (selectedWeapon is IDamageable damageAble)
                 {
-                    damageAble.ReduceDurablility(3);
+                    damageAble.TakeDamage(3);
                 }
             }
         }

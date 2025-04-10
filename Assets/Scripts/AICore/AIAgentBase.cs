@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI; //navmesh
 
 namespace AICore 
@@ -23,7 +24,7 @@ namespace AICore
         [SerializeField] protected Target _visualTarget = new Target();
 
         protected NavMeshAgent _navAgent;
-        protected bool _hasReachedDestination = false;
+        [SerializeField] protected bool _hasReachedDestination = false;
 
         public AITrigger GetAITrigger { get { return _trigger; }  }
         public NavMeshAgent GetNavAgent { get { return _navAgent; } }
@@ -85,7 +86,7 @@ namespace AICore
             {
                 if (IsColliderVisible(other))
                 {
-                    Debug.Log("I see the player");
+                    //Debug.Log("I see the player");
                     _visualTarget.Set(other.transform.position, other,
                         Vector3.Distance(transform.position, other.transform.position),
                         Time.time, TargetType.Visual);
@@ -146,17 +147,17 @@ namespace AICore
 
             return false;
         }
-
+        //VVVcomment this part out for building purposesVVV
         private void OnDrawGizmos()
         {
             if(_sensor == null) return;
 
             Color color = new Color(1f, 0f, 0f, 0.7f);
-            UnityEditor.Handles.color = color;
+            Handles.color = color;
 
             //get forward direction, and use fov angle for an arc
             Vector3 rotatedForward = Quaternion.Euler(0f, -_fov * 0.5f, 0f) * transform.forward;
-            UnityEditor.Handles.DrawSolidArc(GetSensorPosition, Vector3.up,
+            Handles.DrawSolidArc(GetSensorPosition, Vector3.up,
                 rotatedForward, _fov, GetSensorRadius * _sightRange);
         }
     }

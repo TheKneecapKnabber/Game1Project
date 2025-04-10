@@ -9,7 +9,7 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     private bool shooting = false;
     //public int damage;
     public bool shotCooldown = true;
-    public TargetDummy targetDummy;
+    public EnemyBase EnemyBase;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
     int bullets = 10;
@@ -72,36 +72,15 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     private void ShootShotgunWep()
     {
         Ray Shot = cam.ScreenPointToRay(Input.mousePosition);
-        //Ray Shot = cam.ViewportPointToRay(new Vector3(0.5f,0.5f,0.5f));
-        //RaycastHit hit;
-
-        /*
-        if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
-        {
-            Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
-            {
-                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
-                targetDummy.TakeDamage(damage);
-            }
-        }
-        */
-        
-        //so the bullets come from the gun to where the player is looking
+       
         Vector3 target;
-        /*
-        if (Physics.Raycast(Shot, out hit))
-        {
-            target = hit.point;
-            Debug.Log(hit.distance);
-        }
-        else
-            target = Shot.GetPoint(50);
-        */
-        target = Shot.GetPoint(50);
+       
+        target = Shot.GetPoint(50);//set target to what the player is looking at
+        //had to use get point because if object is too close the bullets would go out at a weird angle
+        //
 
         Vector3 direction = target - shootPoint.position;
-        Debug.DrawRay(shootPoint.position, direction);
+        //Debug.DrawRay(shootPoint.position, direction);
 
         //spawn and shoot bullets
         for(int i = 0; i < bullets; i++)

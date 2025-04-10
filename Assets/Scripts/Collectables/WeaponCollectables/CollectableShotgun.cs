@@ -13,16 +13,17 @@ public class CollectableShotgun : WeaponCollectableBase
 
     public override void Equip()
     {
-        if (wc.hasShotgun)//has pistol is a bool
+        if (wc.hasShotgun)//has ShotGun is a bool that is false by default
         {
-            //give normal ammo
+            //give Shotgun ammo
+            
             player.GetComponent<PlayerAmmo>().GetSAmmo(giveAmmo);
             Debug.Log("give ammo");
 
         }
         else
         {
-            // give pistol prefab to wc "weapon" in slot whatever
+            // give pistol prefab to wc "weapon" in slot whatever the designers want
             Debug.Log("Gave Shotgun");
             wc.weapons[2] = shotgunPreFab;
             //give shotgun ammo

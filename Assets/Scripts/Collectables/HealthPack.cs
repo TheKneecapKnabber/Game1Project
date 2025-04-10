@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class HeathPack : InstantUseBase, IRecovery 
+public class HealthPack : InstantUseBase, IRecovery 
 {
     public int recoverHealth;
     [SerializeField] private PlayerHealth ph;
@@ -18,15 +18,13 @@ public class HeathPack : InstantUseBase, IRecovery
             Debug.Log("found player");
             ph = player.GetComponent<PlayerHealth>();
         }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        else
         {
-            OnPickup();
+            ph = player.GetComponent<PlayerHealth>();
         }
     }
+    
+    
     public override void OnPickup()
     {
         Debug.Log("in pickup");
