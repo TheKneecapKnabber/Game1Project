@@ -28,23 +28,25 @@ public class Guard : EnemyBase
        
         if (!shot)
         {
+            Debug.Log("Attack");
+            //set shot equal to true
+            shot = true;
             StartCoroutine(Shoot());
         }
         //shoot projectile from gun to player
-        Debug.Log("Attack");
+        
         
        
     }
     IEnumerator Shoot()
     {
-        //set shot equal to true
-        shot = true;
+        
 
         //shoot projectile
         Vector3 direction = ai.GetVisualTargetPosition - shootPoint.position;
 
-        //wait timeBetweenShots
-       
+        
+       //set up in inaccuracy from 0 to storm troopers 
         spreadX = Random.Range(-spread, spread);
         spreadY = Random.Range(-spread, spread);
         spreadZ = Random.Range(-spread, spread);
@@ -56,7 +58,7 @@ public class Guard : EnemyBase
 
         curBullet.GetComponent<Rigidbody>().velocity = (dirSpread.normalized * projectileSpeed);
         curBullet.GetComponent<projectileBase>().damage = damage; //set the projectile damage
-
+        yield return new WaitForSeconds(timeBetweenShots);
         //reset shot bool
         shot = false;
         yield return null;

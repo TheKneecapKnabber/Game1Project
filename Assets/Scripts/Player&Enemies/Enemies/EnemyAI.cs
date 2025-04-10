@@ -16,7 +16,7 @@ namespace AICore
         [SerializeField] private float waitSec = 1.0f;
         public float chaseTimeSec = 10.0f;
         public float attackRange;// take distance from target
-        public bool lostPlayer, chasingPlayer, patrolling;
+        [SerializeField] private bool lookingForPlayer, foundPlayer, chasingPlayer, patrolling;
 
         protected override void Start()
         {
@@ -45,6 +45,7 @@ namespace AICore
 
 
         }
+        #region patrolling
         public void Patroling()//patrol from point to point
         {
             if (_visualTarget.GetTargetType != TargetType.Visual)
@@ -59,7 +60,7 @@ namespace AICore
             {
                 chasingPlayer = true;
                 patrolling = false;
-               // StartCoroutine(StopChase(10));
+               // StartCoroutine(StopChase(10)); //enemy tires out
             }
         }
 
@@ -74,7 +75,8 @@ namespace AICore
             yield return new WaitForSeconds(waitSec);
             _navAgent.SetDestination(_curTarget.GetPosition);
         }
-
+        #endregion
+        
         public void Chase() //chase after the player and attack when they can
         {
             if(_visualTarget.GetTargetType == TargetType.Visual)
@@ -87,69 +89,97 @@ namespace AICore
                 }
                 
             }
-            else if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
+            else if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)//move to last known player location
             {
-                StartCoroutine(Looking());
-                if(!chasingPlayer)
+                
+                if (!lookingForPlayer)//so it doesn't call corutine multiple times
+                {
+                    //Debug.Log("start looking");
+                    lookingForPlayer = true;
+                    StartCoroutine(Looking());
+                }
+                
+                if (!chasingPlayer)
                 {
                     _navAgent.SetDestination(_curTarget.GetPosition);
                     patrolling = true;
-                }
                     
+                    
+                }
+                
                 
             }
             
         }
-
-        IEnumerator StopChase(int time)
-        {
-            _navAgent.speed = chaseSpeed;
-            yield return new WaitForSeconds(time);
-            chasingPlayer = false;
-            yield return StartCoroutine(Looking());
-            patrolling = true;
-            yield return null;
-        }
+        
         IEnumerator Looking()// stops and looks for the player if see player chase, if not patrol
         {
-            //animation
-            Vector3 startRot = _navAgent.transform.rotation.eulerAngles;
-            Debug.Log("looking one way");
-            while (true)
-            {
-                gameObject.transform.Rotate(0, .0001f, 0, Space.Self);
-                
-                if ((_navAgent.transform.rotation.eulerAngles - startRot).y >= 90f)
-                { 
-                    break; 
-                }//rotation compared to starting rotation is 90 degrees
-                yield return null;
-            }
             
-            if (_visualTarget.GetTargetType != TargetType.Visual)
+            //animation
+            if (lookingForPlayer)
             {
-                
-                Debug.Log("looking the other");
-                gameObject.transform.Rotate(0, -.5f, 0, Space.Self);
-                if (_visualTarget.GetTargetType != TargetType.Visual)
-                {
-                   
-                   
-                    chasingPlayer = false;
-                    
-                }
-                else
+                 Vector3 startRot = _navAgent.transform.rotation.eulerAngles;
+               // Debug.Log("looking one way");
+                while (!foundPlayer)
                 {
                     
-                    chasingPlayer = true;
+                    if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
+                    {
+                        foundPlayer = true;
+                        chasingPlayer = true;
+                        break;
+                    }
+                    
+  
+                    gameObject.transform.Rotate(0, 15f * Time.deltaTime, 0);
+                    //Debug.Log("turning");
+                    //Debug.Log((_navAgent.transform.rotation.eulerAngles - startRot).y);
+                    if ((_navAgent.transform.rotation.eulerAngles - startRot).y >= 90f)
+                    {
+                        //Debug.Log("done first turn");
+                        //patrolling = true;
+                        break; //move on
+                    }//rotation compared to starting rotation is 90 degrees
+                    yield return null;
+
                 }
-            }
-            else
-            {
+
+
                 
-                chasingPlayer = true;
+                //Debug.Log("looking the other");
+                
+                while (!foundPlayer)
+                {
+                    
+                    if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
+                    {
+                        foundPlayer = true;
+                        chasingPlayer = true;
+                        break;
+                    }
+
+                   // Debug.Log("turning other");
+                    gameObject.transform.Rotate(0, -15f * Time.deltaTime, 0); //rotate the other way
+                    if ((_navAgent.transform.rotation.eulerAngles - startRot).y <= -90f)
+                    {
+                        chasingPlayer = false;
+                        patrolling = true;
+                        break; //move on
+                    }//rotation compared to starting rotation is 90 degrees
+                    yield return null;
+
+                }
+                //Debug.Log("going back");
+                //reset for next call
+                foundPlayer = false;
+                lookingForPlayer = false;
+
+            
             }
-                yield return null;
+
+
+            //Debug.Log("done");
         }
+
     }
 }

@@ -8,10 +8,11 @@ public class projectileBase : MonoBehaviour
 {
     public int damage = 1;
     public Rigidbody rb;
+    [SerializeField]protected float timeTillDestroy = 15;
     //public string targetTag;
     private void Start()
     {
-        
+        Destroy(gameObject, timeTillDestroy);
     }
 
     void OnCollisionEnter(Collision other)
