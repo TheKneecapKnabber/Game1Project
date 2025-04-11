@@ -56,7 +56,12 @@ namespace AICore
                 if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
                 {
                     if (!gettingNextPoint)
-                    StartCoroutine(NextPoint());
+                    {
+                        gettingNextPoint = true;
+                        StartCoroutine(NextPoint());
+
+                    }
+                    
                     
                 }
 
@@ -91,6 +96,7 @@ namespace AICore
             //set walk
             animator.SetBool("Walk", true);
             _navAgent.SetDestination(_curTarget.GetPosition);
+            gettingNextPoint = false;
         }
         #endregion
         
@@ -176,7 +182,7 @@ namespace AICore
 
             //Debug.Log("looking the other");
             //trigger turn left
-            //animator.SetTrigger("LookLeft");
+            animator.SetTrigger("LookLeft");
 
             while (!foundPlayer)
             {
