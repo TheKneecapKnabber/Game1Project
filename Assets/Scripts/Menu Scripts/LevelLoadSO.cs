@@ -8,7 +8,7 @@ public class LevelLoadSO : ScriptableObject
 {
     public string levelName;
     public int levelIndex;
-    public Image backgroundImage;
+    public Sprite backgroundImage;
     public float bestTime;
     public bool hasBeenBeaten;
 
