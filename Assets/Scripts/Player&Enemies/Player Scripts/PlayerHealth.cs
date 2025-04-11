@@ -33,8 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (Input.GetKeyDown(KeyCode.Z) && hp == null)
         {
             hp = Instantiate(healthPack, hpLocation);
-        }
-        */  
+        }*/  
     }
 
     public void TakeDamage(int amt)
