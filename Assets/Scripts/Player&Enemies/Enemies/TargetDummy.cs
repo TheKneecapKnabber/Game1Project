@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class TargetDummy : MonoBehaviour, IEnemy
+public class TargetDummy : MonoBehaviour, IDamageable
 {
     [SerializeField]private int health;
     public int maxHealth;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "ScriptableObjects/Weapon")]
-public abstract class Weapon : ScriptableObject
+public abstract class WeaponSO : ScriptableObject
 {
     public float damage;
     public int durability;

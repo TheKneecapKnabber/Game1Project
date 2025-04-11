@@ -85,10 +85,10 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<TargetDummy>() != null)//targetdummy will be changed to enemybase
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<IDamageable>() != null)//targetdummy will be changed to enemybase
             {
-                targetDummy = hit.collider.gameObject.GetComponent<TargetDummy>();//targetdummy will be changed to enemybase
-                targetDummy.TakeDamage(damage);
+                IDamageable _targetDummy = hit.collider.gameObject.GetComponent<IDamageable>();//targetdummy will be changed to enemybase
+                _targetDummy.TakeDamage(damage);
             }
         }
     }
