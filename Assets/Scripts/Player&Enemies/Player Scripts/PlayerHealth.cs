@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHeal
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     //equip to player
     public static event Action<int> OnHealthChange;

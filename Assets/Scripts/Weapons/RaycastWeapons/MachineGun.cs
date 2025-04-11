@@ -10,7 +10,6 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
     float IShotSpread.spread { get; set; } = 3f;
     public bool shotCooldown = true;
     //public int damage;
-    public EnemyBase Enemy;
     private bool reloadingMG = false;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
@@ -85,10 +84,10 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<EnemyBase>() != null)//targetdummy will be changed to enemybase
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<IDamageable>() != null)//targetdummy will be changed to enemybase
             {
-                Enemy = hit.collider.gameObject.GetComponent<EnemyBase>();//targetdummy will be changed to enemybase
-                Enemy.TakeDamage(damage);
+                IDamageable enemy = hit.collider.gameObject.GetComponent<IDamageable>();//targetdummy will be changed to enemybase
+                enemy.TakeDamage(damage);
             }
         }
     }

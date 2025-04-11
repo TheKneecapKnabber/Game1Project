@@ -5,15 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class TargetDummy : EnemyBase
+public class TargetDummy : IDamageable
 {
-    
-    
-
-    
-    
-    public override void Attack()
+    public void TakeDamage(int damage)
     {
-        Debug.Log("Do Nothing");
+        Debug.Log("Hit");
     }
 }
