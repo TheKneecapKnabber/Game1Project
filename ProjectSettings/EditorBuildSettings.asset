@@ -8,7 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test 2.unity
     guid: 191f99c67f83cf74fb2dd9663a6f575b
-  - enabled: 1
-    path: Assets/Scenes/Captured.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

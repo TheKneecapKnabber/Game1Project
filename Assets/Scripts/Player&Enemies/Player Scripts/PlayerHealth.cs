@@ -14,17 +14,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private int health;
     public int damageAmount = 10;
 
-    public GameObject healthPack, hp;
-    public Transform hpLocation;
+    //public GameObject healthPack, hp;
+    //public Transform hpLocation;
 
     private void Start()
     {
-        hpLocation = hp.transform;
+        //hpLocation = hp.transform;
         health = maxHealth;
         OnHealthChange?.Invoke(health);
     }
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.X))
         {
             TakeDamage(damageAmount);
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             hp = Instantiate(healthPack, hpLocation);
         }
+        */  
     }
 
     public void TakeDamage(int amt)

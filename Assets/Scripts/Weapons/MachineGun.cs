@@ -10,7 +10,6 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
     float IShotSpread.spread { get; set; } = 3f;
     public bool shotCooldown = true;
     //public int damage;
-    public TargetDummy targetDummy;
     private bool reloadingMG = false;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
@@ -87,8 +86,8 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
             Debug.Log("Hit " + hit.collider.name);
             if(hit.collider != null && hit.collider.gameObject.GetComponent<IDamageable>() != null)//targetdummy will be changed to enemybase
             {
-                IDamageable _targetDummy = hit.collider.gameObject.GetComponent<IDamageable>();//targetdummy will be changed to enemybase
-                _targetDummy.TakeDamage(damage);
+                IDamageable enemy = hit.collider.gameObject.GetComponent<IDamageable>();//targetdummy will be changed to enemybase
+                enemy.TakeDamage(damage);
             }
         }
     }
