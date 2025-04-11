@@ -16,6 +16,10 @@ public class SAmmoPack : InstantUseBase, IRecovery
             Debug.Log("found player"); 
             pa = player.GetComponent<PlayerAmmo>();
         }
+        else
+        {
+            pa = player.GetComponent<PlayerAmmo>();
+        }
     }
     
 
