@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class TargetDummy : IDamageable
+public class TargetDummy : MonoBehaviour, IDamageable
 {
     public void TakeDamage(int damage)
     {
