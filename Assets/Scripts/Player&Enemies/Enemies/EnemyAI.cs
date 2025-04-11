@@ -176,7 +176,7 @@ namespace AICore
 
             //Debug.Log("looking the other");
             //trigger turn left
-            animator.SetTrigger("LookLeft");
+            //animator.SetTrigger("LookLeft");
 
             while (!foundPlayer)
             {

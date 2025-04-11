@@ -12,19 +12,19 @@ public class WeaponController : MonoBehaviour
     //public static event Action Reload;
     public GameObject selectedWeapon;
     [SerializeField] private GameObject WeaponPoint;
-    public Transform shootPoint;
-    public Transform WeaponPos;
+    public Transform shootPoint;//grab shootpoint from gun
+    public Transform WeaponPos;//position where weapon spawns
     public GameObject ProjectilePrefab;
     public GameObject[] weapons = new GameObject[3];
     public bool hasPistol, hasMachineGun, hasShotgun = false;
     public GameObject currentWeapon;
-    public PlayerAmmo plAmmo;
+    public PlayerAmmo plAmmo;//needed to call info from player ammo
 
     void Start()
     {
         if (WeaponPoint == null)
         {
-            WeaponPoint = GameObject.FindGameObjectWithTag("WeaponPoint");
+            WeaponPoint = GameObject.FindGameObjectWithTag("WeaponPoint");//grabs the default point on the player
         }
         WeaponPos = WeaponPoint.transform;
         currentWeapon = null;
