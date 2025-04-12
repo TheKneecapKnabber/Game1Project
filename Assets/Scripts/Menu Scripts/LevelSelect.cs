@@ -20,10 +20,8 @@ public class LevelSelect : MonoBehaviour
     }
     public void LoadLevel()
     {
-        if(SceneManager.sceneCount >= currentLevel.curLevel.levelIndex)
         SceneManager.LoadScene(currentLevel.curLevel.levelIndex);
     }
-
     public void ChooseLevel()
     {
         levelSelect.SetActive(true);

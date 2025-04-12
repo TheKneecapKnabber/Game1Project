@@ -219,5 +219,30 @@ namespace AICore
             //Debug.Log("done");
         }
 
+        /*
+        public void OnDrawGizmos()
+        {
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                Gizmos.DrawSphere(waypoints[i].transform.position, 1);
+                if (waypoints[i] == waypoints[0])
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position,  waypoints[waypoints.Count].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i+1].transform.position);
+                }
+                else if (waypoints[i] == waypoints[waypoints.Count])
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[0].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i - 1].transform.position);
+                }
+                else
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i + 1].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i - 1].transform.position);
+                }
+
+            }*/
+        }
+
     }
 }
