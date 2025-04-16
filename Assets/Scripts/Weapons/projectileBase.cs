@@ -18,7 +18,7 @@ public class projectileBase : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         
-        if ( other.gameObject.tag == "Enemy"|| other.gameObject.tag == "Player")
+        if (other.collider != null && other.collider.gameObject.GetComponent<IDamageable>() != null)
         {
            DealDamage(other); 
         }
@@ -32,15 +32,9 @@ public class projectileBase : MonoBehaviour
     public void DealDamage(Collision a)
     {
         //Debug.Log("in dealing damage");
-        if (a.gameObject.tag == "Enemy")
-        {
-            //Debug.Log("hit enemy");
-            a.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
-        }
-        else if (a.gameObject.tag == "Player")
-        {
-            a.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-        }
+
+        a.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
+
         Destroy(this.gameObject, 0.5f);
 
     }
