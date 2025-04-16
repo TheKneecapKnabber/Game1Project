@@ -371,10 +371,10 @@ MonoBehaviour:
   reloadTime: 3
   magazineSize: 30
   shotsLeft: 30
+  damage: 10
   cam: {fileID: 0}
   target: {fileID: 0}
   shotCooldown: 1
-  damage: 10
-  targetDummy: {fileID: 0}
   wc: {fileID: 0}
   plAmmo: {fileID: 0}
+  bloodParticles: {fileID: 1341779874521069183, guid: 61d44f526398f6140920e663934eeb90, type: 3}
