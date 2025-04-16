@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IDamageable
+public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
 {
     //equip to player
     public static event Action<int> OnHealthChange;
     public static event Action OnPlayerDeath;
+    [SerializeField] private AudioClip takeDamageSound;
+    [SerializeField] private ParticleSystem damageParticles;
+    private ParticleSystem particleInstance;
 
     public int maxHealth = 100;
     [SerializeField] private int health;
@@ -40,8 +43,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         health -= amt;
         OnHealthChange?.Invoke(health);
+        AudioManager.instance?.PlaySfx(takeDamageSound, Camera.main.transform.position);
+        SpawnParticles();
 
-        if(health <= 0)
+        if (health <= 0)
         {
             health = maxHealth;
             OnPlayerDeath?.Invoke();
@@ -62,5 +67,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             OnHealthChange?.Invoke(health);
         }
         
+    }
+    private void SpawnParticles()
+    {
+        particleInstance = Instantiate(damageParticles, transform.position, Quaternion.identity);
     }
 }

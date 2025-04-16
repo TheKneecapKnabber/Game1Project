@@ -148,7 +148,7 @@ namespace AICore
             return false;
         }
         //VVVcomment this part out for building purposesVVV
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
             if(_sensor == null) return;
 
@@ -159,6 +159,6 @@ namespace AICore
             Vector3 rotatedForward = Quaternion.Euler(0f, -_fov * 0.5f, 0f) * transform.forward;
             Handles.DrawSolidArc(GetSensorPosition, Vector3.up,
                 rotatedForward, _fov, GetSensorRadius * _sightRange);
-        }
+        }*/
     }
 }

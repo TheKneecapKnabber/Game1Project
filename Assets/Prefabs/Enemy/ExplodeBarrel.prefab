@@ -122,4 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explodeRadius: 5
   explodeDamage: 20
-  _gizmoColor: {r: 0, g: 0, b: 0, a: 0}
+  _gizmoColor: {r: 1, g: 0, b: 0, a: 0.47058824}
+  takeDamageSound: {fileID: 8300000, guid: 676d9edfa7eabc54e92a9c54727e82d6, type: 3}

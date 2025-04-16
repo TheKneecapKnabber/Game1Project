@@ -8,10 +8,11 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
     public float explodeRadius;
     public int explodeDamage;
     [SerializeField] private Color _gizmoColor;
-
+    [SerializeField] private AudioClip takeDamageSound;
 
     public void TakeDamage(int damage)
     {
+        AudioManager.instance?.PlaySfx(takeDamageSound, this.transform.position);
         Collider[] cols = Physics.OverlapSphere(transform.position, explodeRadius);
         for (int i = 0; i < cols.Length; i++)
         {

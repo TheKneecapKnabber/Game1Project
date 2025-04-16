@@ -251,12 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3daabff775d067c4f898eb288f758eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeDamageSound: {fileID: 8300000, guid: f71afd054b61e7242b920ea233713678, type: 3}
   maxHealth: 100
   health: 0
   damageAmount: 10
-  healthPack: {fileID: 6938100836483345607, guid: 3343c247cef094f48b4583be9b888095, type: 3}
-  hp: {fileID: 0}
-  hpLocation: {fileID: 0}
 --- !u!114 &4127301072328874603
 MonoBehaviour:
   m_ObjectHideFlags: 0

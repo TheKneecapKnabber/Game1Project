@@ -43,7 +43,7 @@ public class Collector : MonoBehaviour
         }
         else
         {
-            if(itemText.enabled)
+            if(itemText != null && itemText.enabled)
             {
                 itemText.enabled = false;
             }
