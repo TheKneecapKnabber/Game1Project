@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     public Transform shootPoint;//grab shootpoint from gun
     public Transform WeaponPos;//position where weapon spawns
     public GameObject ProjectilePrefab;
-    public GameObject[] weapons = new GameObject[3];
+    public GameObject[] weapons = new GameObject[4];
     public bool hasPistol, hasMachineGun, hasShotgun = false;
     public GameObject currentWeapon;
     public PlayerAmmo plAmmo;//needed to call info from player ammo
@@ -72,6 +72,18 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateShotgun();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (weapons[3] != null && selectedWeapon != weapons[3])
+            {
+                if (selectedWeapon == null) Delete.Invoke();
+                if (selectedWeapon != weapons[3]) Destroy(currentWeapon);
+                selectedWeapon = weapons[3];
+                Debug.Log("Switched to " + selectedWeapon.name);
+                currentWeapon = Instantiate(selectedWeapon, WeaponPos);
+                plAmmo.UpdateThrowable();
             }
         }
 

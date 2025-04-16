@@ -8,17 +8,23 @@ public class PlayerAmmo : MonoBehaviour
 {
     public static event Action<int> OnNAmmoChange;
     public static event Action<int> OnSAmmoChange;
+    public static event Action<int> OnTAmmoChange;
     public static event Action<int> OnSGChange;
     public static event Action<int> OnPistolChange;
     public static event Action<int> OnMGChange;
+    public static event Action<int> OnTChange;
 
     public int maxNAmmo = 120; //normal bullets
     public int maxSAmmo = 60; //shotgun bullets
+    public int maxTAmmo = 20; //throwable weapon
 
-    [SerializeField]public int nAmmo ;
-    [SerializeField] public int sAmmo ;
+    //current ammo of that type
+    public int nAmmo ;
+    public int sAmmo ;
+    public int tAmmo ;
 
-    public int shotgunAmmo = 0, mgAmmo = 0, pistolAmmo = 0;
+    //current weapon magazines (throwAmmo might not be nessicary)
+    public int shotgunAmmo = 0, mgAmmo = 0, pistolAmmo = 0, throwAmmo = 0;
     public WeaponController wc;
 
 
@@ -27,6 +33,7 @@ public class PlayerAmmo : MonoBehaviour
     {
         OnNAmmoChange?.Invoke(nAmmo);
         OnSAmmoChange?.Invoke(sAmmo);
+        OnTAmmoChange?.Invoke(tAmmo);
         OnMGChange?.Invoke(mgAmmo);
         OnPistolChange?.Invoke(pistolAmmo);
         OnSGChange?.Invoke(shotgunAmmo);
@@ -60,6 +67,19 @@ public class PlayerAmmo : MonoBehaviour
         }
 
     }
+    public void GetTAmmo(int amt)
+    {
+        tAmmo += amt;
+        if (tAmmo > maxTAmmo)
+        {
+            tAmmo = maxTAmmo;
+            OnTAmmoChange?.Invoke(tAmmo);
+        }
+        else
+        {
+            OnTAmmoChange?.Invoke(tAmmo);
+        }
+    }
 
     public void UpdateShotgun()
     {
@@ -72,6 +92,10 @@ public class PlayerAmmo : MonoBehaviour
     public void UpdateMachinegun()
     {
         OnMGChange?.Invoke(mgAmmo);
+    }
+    public void UpdateThrowable()
+    {
+        OnTChange?.Invoke(throwAmmo);
     }
 
 }

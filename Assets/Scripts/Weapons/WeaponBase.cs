@@ -38,10 +38,7 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
    
-    protected void CanReload()
-    {
-
-    }
+    
     //public abstract void Fire(Transform shootpoint);
     
     private void Reload()
