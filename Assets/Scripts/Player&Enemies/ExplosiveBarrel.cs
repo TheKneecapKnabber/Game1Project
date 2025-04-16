@@ -9,20 +9,25 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
     public int explodeDamage;
     [SerializeField] private Color _gizmoColor;
     [SerializeField] private AudioClip takeDamageSound;
+    [SerializeField] private bool hasExploded;
 
     public void TakeDamage(int damage)
     {
-        AudioManager.instance?.PlaySfx(takeDamageSound, this.transform.position);
-        Collider[] cols = Physics.OverlapSphere(transform.position, explodeRadius);
-        for (int i = 0; i < cols.Length; i++)
+        if (!hasExploded)
         {
-            if (cols[i].GetComponent<IDamageable>() != null && cols[i].gameObject != this.gameObject)
+            hasExploded = true;
+            AudioManager.instance?.PlaySfx(takeDamageSound, this.transform.position);
+            Collider[] cols = Physics.OverlapSphere(transform.position, explodeRadius);
+            for (int i = 0; i < cols.Length; i++)
             {
-                cols[i].GetComponent<IDamageable>().TakeDamage(explodeDamage);
+                if (cols[i].GetComponent<IDamageable>() != null && cols[i].gameObject != this.gameObject)
+                {
+                    cols[i].GetComponent<IDamageable>().TakeDamage(explodeDamage);
+                }
             }
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     public void OnDrawGizmos()

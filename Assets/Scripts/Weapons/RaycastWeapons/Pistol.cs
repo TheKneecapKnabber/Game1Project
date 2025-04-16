@@ -71,10 +71,10 @@ public class Pistol : RaycastWeaponBase, IReloadable
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<EnemyBase>() != null)//targetdummy will be changed to enemybase
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<IDamageable>() != null)//targetdummy will be changed to enemybase
             {
-                Enemy = hit.collider.gameObject.GetComponent<EnemyBase>();//targetdummy will be changed to enemybase
-                Enemy.TakeDamage(damage);
+                IDamageable enemy = hit.collider.gameObject.GetComponent<IDamageable>();
+                enemy.TakeDamage(damage);
             }
         }
     }

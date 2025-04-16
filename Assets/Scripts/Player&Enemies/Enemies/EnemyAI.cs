@@ -108,11 +108,19 @@ namespace AICore
             _navAgent.speed = chaseSpeed;
             if (_visualTarget.GetTargetType == TargetType.Visual)
             {
-                _navAgent.SetDestination(_visualTarget.GetPosition);
-                //if close enough to the player attack
                 if (Vector3.Distance(_visualTarget.GetPosition, _navAgent.gameObject.transform.position)<= attackRange)
                 {
+                    animator.SetBool("Idle", true);
+                    animator.SetBool("Run", false);
+                    _navAgent.SetDestination(transform.position);
+                    transform.LookAt(_visualTarget.GetPosition);
                     EnemyBase.Attack();
+                }
+                else
+                {
+                    animator.SetBool("Run", true);
+                    animator.SetBool("Idle", false);
+                    _navAgent.SetDestination(_visualTarget.GetPosition);
                 }
                 
             }

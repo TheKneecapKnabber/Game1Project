@@ -1618,6 +1618,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2649444920925921007, guid: c47e61e99c1ab5b48837a2583e712791, type: 3}
+      propertyPath: attackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2649444920925921007, guid: c47e61e99c1ab5b48837a2583e712791, type: 3}
       propertyPath: waypoints.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1672,6 +1676,10 @@ PrefabInstance:
     - target: {fileID: 2793177393095774840, guid: c47e61e99c1ab5b48837a2583e712791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4490723552142466429, guid: c47e61e99c1ab5b48837a2583e712791, type: 3}
+      propertyPath: spread
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4490723552142466429, guid: c47e61e99c1ab5b48837a2583e712791, type: 3}
       propertyPath: damageParticles
