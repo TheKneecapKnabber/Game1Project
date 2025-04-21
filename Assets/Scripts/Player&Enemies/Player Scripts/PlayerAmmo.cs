@@ -14,9 +14,9 @@ public class PlayerAmmo : MonoBehaviour
     public static event Action<int> OnMGChange;
     public static event Action<int> OnTChange;
 
-    public int maxNAmmo = 120; //normal bullets
-    public int maxSAmmo = 60; //shotgun bullets
-    public int maxTAmmo = 20; //throwable weapon
+    [SerializeField] private int maxNAmmo = 120; //normal bullets
+    [SerializeField] private int maxSAmmo = 60; //shotgun bullets
+    [SerializeField] private int maxTAmmo = 20; //throwable weapon
 
     //current ammo of that type
     public int nAmmo ;
@@ -73,6 +73,11 @@ public class PlayerAmmo : MonoBehaviour
         if (tAmmo > maxTAmmo)
         {
             tAmmo = maxTAmmo;
+            OnTAmmoChange?.Invoke(tAmmo);
+        }
+        else if (tAmmo == 0)
+        {
+            wc.hasThrowable = false;//disables the weapon from getting switched to if there is no ammo
             OnTAmmoChange?.Invoke(tAmmo);
         }
         else

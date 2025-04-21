@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TAmmoPack : InstantUseBase, IRecovery
 {
     public int recoverTAmmo;
+    [SerializeField] private GameObject throwablePrefab;
     [SerializeField] private PlayerAmmo pa;
+    [SerializeField] private WeaponController wc; // needed because the ammo is also the weapon
 
     void Start()
     {
@@ -26,6 +29,12 @@ public class TAmmoPack : InstantUseBase, IRecovery
     public override void OnPickup()
     {
         Recover(recoverTAmmo);
+        wc.hasThrowable = true;
+        if (wc.weapons[3] ==  null)
+        {
+            //gives the weapon prefab
+
+        }
 
         //particles if you want
 

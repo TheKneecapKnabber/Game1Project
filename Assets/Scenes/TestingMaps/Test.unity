@@ -6541,6 +6541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 5165489101040141691, guid: 433a53d7f6852ee4488ffb19f7624b81, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7545859484850738067, guid: 433a53d7f6852ee4488ffb19f7624b81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.892

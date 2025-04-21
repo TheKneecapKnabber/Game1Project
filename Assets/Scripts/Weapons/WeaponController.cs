@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     public Transform WeaponPos;//position where weapon spawns
     public GameObject ProjectilePrefab;
     public GameObject[] weapons = new GameObject[4];
-    public bool hasPistol, hasMachineGun, hasShotgun = false;
+    public bool hasPistol, hasMachineGun, hasShotgun, hasThrowable = false;
     public GameObject currentWeapon;
     public PlayerAmmo plAmmo;//needed to call info from player ammo
 
@@ -76,7 +76,7 @@ public class WeaponController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (weapons[3] != null && selectedWeapon != weapons[3])
+            if (weapons[3] != null && selectedWeapon != weapons[3] && hasThrowable)
             {
                 if (selectedWeapon == null) Delete.Invoke();
                 if (selectedWeapon != weapons[3]) Destroy(currentWeapon);
