@@ -33,7 +33,7 @@ public class SAmmoPack : InstantUseBase, IRecovery
     }
     public void Recover(int a)
     {
-        //heal player by recover health value
+        //Give player ammo
         pa.GetSAmmo(a);
     }
 }

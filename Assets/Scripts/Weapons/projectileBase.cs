@@ -8,14 +8,14 @@ public class projectileBase : MonoBehaviour
 {
     public int damage = 1;
     public Rigidbody rb;
-    [SerializeField]protected float timeTillDestroy = 15;
+    [SerializeField]protected float timeTillDestroy = 5;
     //public string targetTag;
     private void Start()
     {
         Destroy(gameObject, timeTillDestroy);
     }
 
-    void OnCollisionEnter(Collision other)
+    protected virtual void OnCollisionEnter(Collision other)
     {
         
         if (other.collider != null && other.collider.gameObject.GetComponent<IDamageable>() != null)

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NAmmoPack : InstantUseBase, IRecovery
+public class TAmmoPack : InstantUseBase, IRecovery
 {
-    public int recoverNAmmo;
+    public int recoverTAmmo;
     [SerializeField] private PlayerAmmo pa;
 
     void Start()
@@ -21,12 +21,11 @@ public class NAmmoPack : InstantUseBase, IRecovery
             pa = player.GetComponent<PlayerAmmo>();
         }
     }
-    
 
 
     public override void OnPickup()
     {
-        Recover(recoverNAmmo);
+        Recover(recoverTAmmo);
 
         //particles if you want
 
@@ -35,6 +34,6 @@ public class NAmmoPack : InstantUseBase, IRecovery
     public void Recover(int a)
     {
         //Give player ammo
-        pa.GetNAmmo(a);
+        pa.GetTAmmo(a);
     }
 }
