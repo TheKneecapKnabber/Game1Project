@@ -36,6 +36,13 @@ public class TAmmoPack : InstantUseBase, IRecovery
             //gives the weapon prefab
             wc.weapons[3] = throwablePrefab;
         }
+        if (wc.currentWeapon == null)
+        {
+            
+            wc.selectedWeapon = wc.weapons[3];
+            wc.currentWeapon = Instantiate(wc.selectedWeapon, wc.WeaponPos);
+            pa.UpdateThrowable();
+        }
 
         //particles if you want
 

@@ -6711,6 +6711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1482541311415009140, guid: 4a71fd70482426e40a29ea22c6c1e931, type: 3}
+      propertyPath: damageParticles
+      value: 
+      objectReference: {fileID: 2401012808896441718, guid: 61d44f526398f6140920e663934eeb90, type: 3}
     - target: {fileID: 1798368657413928692, guid: 4a71fd70482426e40a29ea22c6c1e931, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -17,6 +17,7 @@ public class AmmoUI : MonoBehaviour
         PlayerAmmo.OnMGChange += UpdateMgAmount;
         PlayerAmmo.OnPistolChange += UpdatePistolAmount;
         PlayerAmmo.OnSGChange += UpdateSgAmount;
+        PlayerAmmo.OnTAmmoChange += UpdateThrowableAmount;
     }
     private void OnDisable()
     {
@@ -25,6 +26,7 @@ public class AmmoUI : MonoBehaviour
         PlayerAmmo.OnMGChange -= UpdateMgAmount;
         PlayerAmmo.OnPistolChange -= UpdatePistolAmount;
         PlayerAmmo.OnSGChange -= UpdateSgAmount;
+        PlayerAmmo.OnTAmmoChange -= UpdateThrowableAmount;
     }
 
     private void UpdateNAmmoUI(int newNAmmo)

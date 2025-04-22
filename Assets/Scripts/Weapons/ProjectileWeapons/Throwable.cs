@@ -5,7 +5,7 @@ using UnityEngine;
 public class Throwable : ProjectileWeaponBase, IReloadable
 {
     [SerializeField] private WeaponController wc;
-    [SerializeField] private PlayerAmmo pa;
+    public PlayerAmmo pa;
 
     [SerializeField] private GameObject meshHolder;//child object that holds the mesh objects
     public bool canThrow = true;
@@ -43,27 +43,31 @@ public class Throwable : ProjectileWeaponBase, IReloadable
         {
             canThrow = false;
 
-            StartCoroutine(ThrowWeapon(throwCooldown));
+            StartCoroutine(ThrowWeapon(throwCooldown, pa));
         }
         
 
     }
     
-    private IEnumerator ThrowWeapon(float throwCooldown)
+    private IEnumerator ThrowWeapon(float throwCooldown, PlayerAmmo pa)
     {
         meshHolder.SetActive(false);
         Toss();
 
         yield return new WaitForSeconds(throwCooldown);
-        canThrow = true;
-        meshHolder.SetActive(true);
+        if (pa.tAmmo > 0)
+        {
+            canThrow = true;
+            meshHolder.SetActive(true);
+        }
+       
         yield return null;
 
         
     }
     private void Toss()
     {
-        pa.tAmmo -= 1;
+        pa.GetTAmmo(-1);
         pa.UpdateThrowable();
         RaycastHit hit;
         Ray Shot = cam.ScreenPointToRay(Input.mousePosition);

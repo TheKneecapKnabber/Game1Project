@@ -100,7 +100,7 @@ public class PlayerAmmo : MonoBehaviour
     }
     public void UpdateThrowable()
     {
-        OnTChange?.Invoke(throwAmmo);
+        OnTAmmoChange?.Invoke(tAmmo);
     }
 
 }

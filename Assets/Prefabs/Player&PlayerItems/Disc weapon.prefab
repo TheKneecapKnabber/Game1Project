@@ -134,7 +134,7 @@ MonoBehaviour:
   reloadTime: 0
   magazineSize: 0
   shotsLeft: 0
-  damage: 0
+  damage: 20
   cam: {fileID: 0}
   target: {fileID: 0}
   projectilePrefab: {fileID: 2555320519879190814, guid: 4b165fd60c664674a8177de67e322ade, type: 3}
@@ -144,7 +144,7 @@ MonoBehaviour:
   pa: {fileID: 0}
   meshHolder: {fileID: 4654401984008313805}
   canThrow: 1
-  throwCooldown: 1
+  throwCooldown: 0.5
 --- !u!1 &9122803437695647409
 GameObject:
   m_ObjectHideFlags: 0

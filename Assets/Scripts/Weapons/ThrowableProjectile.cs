@@ -10,7 +10,20 @@ public class ThrowableProjectile : projectileBase
         {
             DealDamage(other);
         }
+        /*
+        if (other.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            //set fixed joint
+        }
+        else
+        {
+            //transform.SetParent(other.transform, true);
+            
+            
+        }
+        */
         transform.SetParent(other.transform,  true);
+        //rb.useGravity = false;
     }
- 
+    
 }

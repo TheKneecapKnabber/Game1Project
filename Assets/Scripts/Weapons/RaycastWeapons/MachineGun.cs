@@ -29,7 +29,7 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         
     }
 
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)
@@ -68,7 +68,7 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
 
     private void ShootMG()
     {
-        Debug.Log("test shot");
+        //Debug.Log("test shot");
         //yield return new WaitForSeconds(.1f);
 
         shotCooldown = true;
