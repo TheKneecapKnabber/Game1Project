@@ -20,15 +20,15 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     {
         WeaponController.Shoot += ShootWep;
         
-        WeaponController.Delete += Despawn;
+       
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= ShootWep;
         
-        WeaponController.Delete += Despawn;
+        
     }
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)

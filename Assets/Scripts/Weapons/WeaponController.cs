@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     
     public static event Action Shoot;
     public static event Action StopShoot;
-    public static event Action Delete;
+    //public static event Action Delete;
     //public static event Action Reload;
     public GameObject selectedWeapon;
     [SerializeField] private GameObject WeaponPoint;
@@ -41,7 +41,7 @@ public class WeaponController : MonoBehaviour
         {
             if (weapons[0] != null && selectedWeapon != weapons[0])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[0]) Destroy(currentWeapon);
                 selectedWeapon = weapons[0];
                 Debug.Log("Switched to " + selectedWeapon.name);
@@ -54,7 +54,7 @@ public class WeaponController : MonoBehaviour
         {
             if(weapons[1] != null && selectedWeapon != weapons[1])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[1]) Destroy(currentWeapon);
                 selectedWeapon = weapons[1];
                 Debug.Log("Switched to " + selectedWeapon.name);
@@ -66,7 +66,7 @@ public class WeaponController : MonoBehaviour
         {
             if (weapons[2] != null && selectedWeapon != weapons[2])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[2]) Destroy(currentWeapon);
                 selectedWeapon = weapons[2];
                 Debug.Log("Switched to " + selectedWeapon.name);
@@ -78,7 +78,7 @@ public class WeaponController : MonoBehaviour
         {
             if (weapons[3] != null && selectedWeapon != weapons[3] && hasThrowable)
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if (selectedWeapon != weapons[3]) Destroy(currentWeapon);
                 selectedWeapon = weapons[3];
                 Debug.Log("Switched to " + selectedWeapon.name);

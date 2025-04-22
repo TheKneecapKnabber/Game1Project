@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeDamageSound: {fileID: 8300000, guid: f71afd054b61e7242b920ea233713678, type: 3}
+  damageParticles: {fileID: 0}
   maxHealth: 100
   health: 0
   damageAmount: 10
@@ -269,11 +270,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNAmmo: 120
   maxSAmmo: 60
+  maxTAmmo: 20
   nAmmo: 0
   sAmmo: 0
+  tAmmo: 0
   shotgunAmmo: 0
   mgAmmo: 0
   pistolAmmo: 0
+  throwAmmo: 0
   wc: {fileID: 3820220748121665356}
 --- !u!54 &4413603556500705472
 Rigidbody:
@@ -323,9 +327,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   hasPistol: 0
   hasMachineGun: 0
   hasShotgun: 0
+  hasThrowable: 0
   currentWeapon: {fileID: 0}
   plAmmo: {fileID: 0}
 --- !u!1 &2904819050798974135

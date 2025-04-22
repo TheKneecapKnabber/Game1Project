@@ -19,7 +19,7 @@ public abstract class WeaponBase : MonoBehaviour
     
     
     public IWeaponBehavior weaponBehavior;
-    private void Start()
+    private void Awake()
     {
         cam = Camera.main;
     }
@@ -28,13 +28,13 @@ public abstract class WeaponBase : MonoBehaviour
     {
        // WeaponController.Shoot += Use;
         //WeaponController.Reload += CanReload;
-        WeaponController.Delete += Despawn;
+        
     }
     private void OnDisable()
     {
         //WeaponController.Shoot -= Use;
         //WeaponController.Reload -= CanReload;
-        WeaponController.Delete -= Despawn;
+        
     }
 
    

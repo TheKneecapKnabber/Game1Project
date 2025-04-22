@@ -19,14 +19,14 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         WeaponController.Shoot += StartFiring;
         WeaponController.StopShoot += StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= StartFiring;
         WeaponController.StopShoot -= StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
 
     void Awake()

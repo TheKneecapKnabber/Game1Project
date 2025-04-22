@@ -14,14 +14,13 @@ public class Pistol : RaycastWeaponBase, IReloadable
     void OnEnable()
     {
         WeaponController.Shoot += ShootWep;
-        
-        WeaponController.Delete += Despawn;
+
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= ShootWep;
         
-        WeaponController.Delete += Despawn;
+        
     }
 
     void Awake()

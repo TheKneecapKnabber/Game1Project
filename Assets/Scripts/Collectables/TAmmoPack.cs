@@ -21,6 +21,7 @@ public class TAmmoPack : InstantUseBase, IRecovery
         }
         else
         {
+            wc = player.GetComponent<WeaponController>();
             pa = player.GetComponent<PlayerAmmo>();
         }
     }
@@ -33,7 +34,7 @@ public class TAmmoPack : InstantUseBase, IRecovery
         if (wc.weapons[3] ==  null)
         {
             //gives the weapon prefab
-
+            wc.weapons[3] = throwablePrefab;
         }
 
         //particles if you want
