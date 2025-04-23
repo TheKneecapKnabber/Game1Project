@@ -19,17 +19,17 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         WeaponController.Shoot += StartFiring;
         WeaponController.StopShoot += StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= StartFiring;
         WeaponController.StopShoot -= StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
 
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)
@@ -68,7 +68,7 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
 
     private void ShootMG()
     {
-        Debug.Log("test shot");
+        //Debug.Log("test shot");
         //yield return new WaitForSeconds(.1f);
 
         shotCooldown = true;

@@ -14,17 +14,16 @@ public class Pistol : RaycastWeaponBase, IReloadable
     void OnEnable()
     {
         WeaponController.Shoot += ShootWep;
-        
-        WeaponController.Delete += Despawn;
+
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= ShootWep;
         
-        WeaponController.Delete += Despawn;
+        
     }
 
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)
@@ -56,7 +55,7 @@ public class Pistol : RaycastWeaponBase, IReloadable
 
     private void ShootPistol()
     {
-        Debug.Log("test shot");
+       // Debug.Log("test shot");
 
         //yield return new WaitForSeconds(.3f);
         shotCooldown = true;

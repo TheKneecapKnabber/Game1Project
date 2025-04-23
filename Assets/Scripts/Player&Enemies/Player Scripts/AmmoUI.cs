@@ -17,6 +17,8 @@ public class AmmoUI : MonoBehaviour
         PlayerAmmo.OnMGChange += UpdateMgAmount;
         PlayerAmmo.OnPistolChange += UpdatePistolAmount;
         PlayerAmmo.OnSGChange += UpdateSgAmount;
+        PlayerAmmo.OnTAmmoChange += UpdateTAmmoUI;
+        PlayerAmmo.OnTChange += UpdateThrowableAmount;
     }
     private void OnDisable()
     {
@@ -25,6 +27,8 @@ public class AmmoUI : MonoBehaviour
         PlayerAmmo.OnMGChange -= UpdateMgAmount;
         PlayerAmmo.OnPistolChange -= UpdatePistolAmount;
         PlayerAmmo.OnSGChange -= UpdateSgAmount;
+        PlayerAmmo.OnTAmmoChange -= UpdateTAmmoUI;
+        PlayerAmmo.OnTChange -= UpdateThrowableAmount;
     }
 
     private void UpdateNAmmoUI(int newNAmmo)
@@ -46,6 +50,14 @@ public class AmmoUI : MonoBehaviour
             plAmmo.UpdateShotgun();
         }
     }
+    private void UpdateTAmmoUI(int newTAmmo)
+    {
+        if(wc.selectedWeapon == wc.weapons[3])
+        {
+            //Debug.Log("updated TAmmo");
+            plAmmo.UpdateThrowable();
+        }
+    }
 
     private void UpdateMgAmount(int curMgAmmo)
     {
@@ -58,6 +70,10 @@ public class AmmoUI : MonoBehaviour
     private void UpdatePistolAmount(int curPistolAmmo)
     {
         nAmmoText.text = ($"{curPistolAmmo} / {plAmmo.nAmmo}");
+    }
+    private void UpdateThrowableAmount(int curThrowableAmmo)
+    {
+        nAmmoText.text = ($"{curThrowableAmmo} Left");
     }
 
 
