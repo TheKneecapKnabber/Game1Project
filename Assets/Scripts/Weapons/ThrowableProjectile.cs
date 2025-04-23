@@ -11,6 +11,13 @@ public class ThrowableProjectile : projectileBase
         {
             DealDamage(other);
         }
+        
+            Instantiate(staticObject, gameObject.transform.position, gameObject.transform.rotation, other.transform.root);
+            Destroy(gameObject);
+        
+        
+        //Debug.Log(other.gameObject.name);
+        //Instantiate(staticObject,gameObject.transform.position, gameObject.transform.rotation, other.transform.root);
 
         /*
         if (other.gameObject.GetComponent<Rigidbody>() != null)
@@ -24,7 +31,7 @@ public class ThrowableProjectile : projectileBase
             
         }
         */
-        transform.SetParent(other.transform.root,  true);
+        //transform.SetParent(other.transform.root,  true);
         //rb.useGravity = false;
     }
     

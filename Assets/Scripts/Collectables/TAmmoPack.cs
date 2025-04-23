@@ -18,6 +18,7 @@ public class TAmmoPack : InstantUseBase, IRecovery
             player = GameObject.FindGameObjectWithTag("Player");
             Debug.Log("found player");
             pa = player.GetComponent<PlayerAmmo>();
+            wc = player.GetComponent<WeaponController>();
         }
         else
         {
@@ -42,6 +43,7 @@ public class TAmmoPack : InstantUseBase, IRecovery
             wc.selectedWeapon = wc.weapons[3];
             wc.currentWeapon = Instantiate(wc.selectedWeapon, wc.WeaponPos);
             pa.UpdateThrowable();
+            Debug.Log("pack");
         }
 
         //particles if you want

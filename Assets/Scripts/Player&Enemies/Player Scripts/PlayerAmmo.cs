@@ -74,6 +74,7 @@ public class PlayerAmmo : MonoBehaviour
         {
             tAmmo = maxTAmmo;
             OnTAmmoChange?.Invoke(tAmmo);
+
         }
         else if (tAmmo == 0)
         {
@@ -83,6 +84,7 @@ public class PlayerAmmo : MonoBehaviour
         else
         {
             OnTAmmoChange?.Invoke(tAmmo);
+            //Debug.Log("ammo");
         }
     }
 
@@ -100,7 +102,8 @@ public class PlayerAmmo : MonoBehaviour
     }
     public void UpdateThrowable()
     {
-        OnTAmmoChange?.Invoke(tAmmo);
+        //Debug.Log("Throwable");
+        OnTChange?.Invoke(tAmmo);
     }
 
 }

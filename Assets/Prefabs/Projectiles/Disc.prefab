@@ -149,3 +149,4 @@ MonoBehaviour:
   damage: 1
   rb: {fileID: 3323589377607849452}
   timeTillDestroy: 8
+  staticObject: {fileID: 209495501422249665, guid: 6225ae2246e5b8840a414cd52062e36b, type: 3}
