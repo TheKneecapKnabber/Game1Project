@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2936927574924545061}
   - component: {fileID: 2140036935980399602}
   - component: {fileID: 552085203618438693}
-  - component: {fileID: 5032736786778513426}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -84,27 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5032736786778513426
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101261592949160846}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1066873714077078099
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,12 +229,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3daabff775d067c4f898eb288f758eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeDamageSound: {fileID: 8300000, guid: f71afd054b61e7242b920ea233713678, type: 3}
+  damageParticles: {fileID: 2401012808896441718, guid: 61d44f526398f6140920e663934eeb90, type: 3}
   maxHealth: 100
   health: 0
   damageAmount: 10
-  healthPack: {fileID: 6938100836483345607, guid: 3343c247cef094f48b4583be9b888095, type: 3}
-  hp: {fileID: 0}
-  hpLocation: {fileID: 0}
 --- !u!114 &4127301072328874603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,11 +248,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNAmmo: 120
   maxSAmmo: 60
+  maxTAmmo: 20
   nAmmo: 0
   sAmmo: 0
+  tAmmo: 0
   shotgunAmmo: 0
   mgAmmo: 0
   pistolAmmo: 0
+  throwAmmo: 0
   wc: {fileID: 3820220748121665356}
 --- !u!54 &4413603556500705472
 Rigidbody:
@@ -325,9 +305,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   hasPistol: 0
   hasMachineGun: 0
   hasShotgun: 0
+  hasThrowable: 0
   currentWeapon: {fileID: 0}
   plAmmo: {fileID: 0}
 --- !u!1 &2904819050798974135
@@ -358,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 2904819050798974135}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.504}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

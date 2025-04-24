@@ -13,10 +13,12 @@ namespace AICore
         [SerializeField] private int waypointIndex;
         [SerializeField] protected float moveSpeed; // patrol speed
         [SerializeField] protected float chaseSpeed;// chasing the player
-        [SerializeField] private float waitSec = 1.0f;
+        [SerializeField] private float waitSec = 2.7f;
         public float chaseTimeSec = 10.0f;
         public float attackRange;// take distance from target
-        [SerializeField] private bool lookingForPlayer, foundPlayer, chasingPlayer, patrolling;
+        [SerializeField] private bool foundPlayer, chasingPlayer, patrolling;//state bools
+        private bool lookingForPlayer, gettingNextPoint;//bools to prevent multiple corutines from starting
+        [SerializeField] private Animator animator;
 
         protected override void Start()
         {
@@ -50,17 +52,28 @@ namespace AICore
         {
             if (_visualTarget.GetTargetType != TargetType.Visual)
             {
+                _navAgent.speed = moveSpeed;
                 if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
                 {
-                    StartCoroutine(NextPoint());
+                    if (!gettingNextPoint)
+                    {
+                        gettingNextPoint = true;
+                        StartCoroutine(NextPoint());
+
+                    }
+                    
                     
                 }
+
             }
             else
             {
                 chasingPlayer = true;
                 patrolling = false;
-               // StartCoroutine(StopChase(10)); //enemy tires out
+                //remove walk
+                animator.SetBool("Walk", false);
+                
+                // StartCoroutine(StopChase(10)); //enemy tires out
             }
         }
 
@@ -72,20 +85,42 @@ namespace AICore
                         Vector3.Distance(transform.position, waypoints[waypointIndex].transform.position),
                         Time.time, TargetType.Waypoint);
             waypointIndex = (waypointIndex + 1) % waypoints.Count();
+            //remove walk
+            animator.SetBool("Walk", false);
+            //set idle
+            animator.SetBool("Idle", true);
+
             yield return new WaitForSeconds(waitSec);
+            //remove idle
+            animator.SetBool("Idle", false);
+            //set walk
+            animator.SetBool("Walk", true);
             _navAgent.SetDestination(_curTarget.GetPosition);
+            gettingNextPoint = false;
         }
         #endregion
         
         public void Chase() //chase after the player and attack when they can
         {
-            if(_visualTarget.GetTargetType == TargetType.Visual)
+
+            //set run
+            animator.SetBool("Run", true);
+            _navAgent.speed = chaseSpeed;
+            if (_visualTarget.GetTargetType == TargetType.Visual)
             {
-                _navAgent.SetDestination(_visualTarget.GetPosition);
-                //if close enough to the player attack
                 if (Vector3.Distance(_visualTarget.GetPosition, _navAgent.gameObject.transform.position)<= attackRange)
                 {
+                    animator.SetBool("Idle", true);
+                    animator.SetBool("Run", false);
+                    _navAgent.SetDestination(transform.position);
+                    transform.LookAt(_visualTarget.GetPosition);
                     EnemyBase.Attack();
+                }
+                else
+                {
+                    animator.SetBool("Run", true);
+                    animator.SetBool("Idle", false);
+                    _navAgent.SetDestination(_visualTarget.GetPosition);
                 }
                 
             }
@@ -103,8 +138,8 @@ namespace AICore
                 {
                     _navAgent.SetDestination(_curTarget.GetPosition);
                     patrolling = true;
-                    
-                    
+                    _navAgent.speed = moveSpeed;
+
                 }
                 
                 
@@ -114,71 +149,107 @@ namespace AICore
         
         IEnumerator Looking()// stops and looks for the player if see player chase, if not patrol
         {
-            
+
             //animation
-            if (lookingForPlayer)
+            
+
+                chasingPlayer = false;
+            //set run false
+            animator.SetBool("Run", false);
+            Vector3 startRot = _navAgent.transform.rotation.eulerAngles;
+             Debug.Log("looking one way");
+
+            //trigger turn right
+            animator.SetTrigger("LookRight");
+            while (!foundPlayer)
             {
-                 Vector3 startRot = _navAgent.transform.rotation.eulerAngles;
-               // Debug.Log("looking one way");
-                while (!foundPlayer)
-                {
                     
-                    if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
-                    {
-                        foundPlayer = true;
-                        chasingPlayer = true;
-                        break;
-                    }
+                if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
+                {
+                    foundPlayer = true;
+                    chasingPlayer = true;
+                    animator.SetBool("Run", true);
+                    break;
+                }
                     
   
-                    gameObject.transform.Rotate(0, 15f * Time.deltaTime, 0);
-                    //Debug.Log("turning");
-                    //Debug.Log((_navAgent.transform.rotation.eulerAngles - startRot).y);
-                    if ((_navAgent.transform.rotation.eulerAngles - startRot).y >= 90f)
-                    {
-                        //Debug.Log("done first turn");
-                        //patrolling = true;
-                        break; //move on
-                    }//rotation compared to starting rotation is 90 degrees
-                    yield return null;
-
-                }
-
-
+                gameObject.transform.Rotate(0, 15f * Time.deltaTime, 0);
+                Debug.Log("turning");
                 
-                //Debug.Log("looking the other");
-                
-                while (!foundPlayer)
+                if ((_navAgent.transform.rotation.eulerAngles - startRot).y >= 90f)
                 {
-                    
-                    if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
-                    {
-                        foundPlayer = true;
-                        chasingPlayer = true;
-                        break;
-                    }
+                    //Debug.Log("done first turn");
+                    //patrolling = true;
+                    break; //move on
+                }//rotation compared to starting rotation is 90 degrees
+                yield return null;
 
-                   // Debug.Log("turning other");
-                    gameObject.transform.Rotate(0, -15f * Time.deltaTime, 0); //rotate the other way
-                    if ((_navAgent.transform.rotation.eulerAngles - startRot).y <= -90f)
-                    {
-                        chasingPlayer = false;
-                        patrolling = true;
-                        break; //move on
-                    }//rotation compared to starting rotation is 90 degrees
-                    yield return null;
-
-                }
-                //Debug.Log("going back");
-                //reset for next call
-                foundPlayer = false;
-                lookingForPlayer = false;
-
-            
             }
 
 
+
+            //Debug.Log("looking the other");
+            //trigger turn left
+            animator.SetTrigger("LookLeft");
+
+            while (!foundPlayer)
+            {
+                    
+                if (_visualTarget.GetTargetType == TargetType.Visual)//check for the player
+                {
+                    foundPlayer = true;
+                    chasingPlayer = true;
+                    animator.SetBool("Run", true);
+                    break;
+                }
+
+                // Debug.Log("turning other");
+                gameObject.transform.Rotate(0, -15f * Time.deltaTime, 0); //rotate the other way
+                if ((_navAgent.transform.rotation.eulerAngles - startRot).y <= -90f)
+                {
+                    chasingPlayer = false;
+                    patrolling = true;
+                    animator.SetBool("Walk", true);
+                    break; //move on
+                }//rotation compared to starting rotation is 90 degrees
+                yield return null;
+
+            }
+
+            //Debug.Log("going back");
+            //reset for next call
+            foundPlayer = false;
+            lookingForPlayer = false;
+
+            
+
+
             //Debug.Log("done");
+        }
+
+        
+        public void OnDrawGizmos()
+        {
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                Gizmos.DrawSphere(waypoints[i].transform.position, 1);
+                if (i == 0)
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position,  waypoints[waypoints.Count - 1].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i+1].transform.position);
+                }
+                else if (i == waypoints.Count - 1)
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[0].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i - 1].transform.position);
+                }
+                else
+                {
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i + 1].transform.position);
+                    Gizmos.DrawLine(waypoints[i].transform.position, waypoints[i - 1].transform.position);
+                }
+
+            }
         }
 
     }

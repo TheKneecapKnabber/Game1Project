@@ -34,7 +34,7 @@ public class NAmmoPack : InstantUseBase, IRecovery
     }
     public void Recover(int a)
     {
-        //heal player by recover health value
+        //Give player ammo
         pa.GetNAmmo(a);
     }
 }

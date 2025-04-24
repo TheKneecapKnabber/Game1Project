@@ -10,7 +10,6 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
     float IShotSpread.spread { get; set; } = 3f;
     public bool shotCooldown = true;
     //public int damage;
-    public EnemyBase Enemy;
     private bool reloadingMG = false;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
@@ -20,17 +19,17 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         WeaponController.Shoot += StartFiring;
         WeaponController.StopShoot += StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= StartFiring;
         WeaponController.StopShoot -= StopFiring;
         //WeaponController.Reload += Reload;
-        WeaponController.Delete += Despawn;
+        
     }
 
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)
@@ -69,7 +68,7 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
 
     private void ShootMG()
     {
-        Debug.Log("test shot");
+        //Debug.Log("test shot");
         //yield return new WaitForSeconds(.1f);
 
         shotCooldown = true;
@@ -85,10 +84,10 @@ public class MachineGun : RaycastWeaponBase, IReloadable, IShotSpread //IAutomat
         if (Physics.Raycast(Shot, out hit, Mathf.Infinity))
         {
             Debug.Log("Hit " + hit.collider.name);
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<EnemyBase>() != null)//targetdummy will be changed to enemybase
+            if(hit.collider != null && hit.collider.gameObject.GetComponent<IDamageable>() != null)//targetdummy will be changed to enemybase
             {
-                Enemy = hit.collider.gameObject.GetComponent<EnemyBase>();//targetdummy will be changed to enemybase
-                Enemy.TakeDamage(damage);
+                IDamageable enemy = hit.collider.gameObject.GetComponent<IDamageable>();//targetdummy will be changed to enemybase
+                enemy.TakeDamage(damage);
             }
         }
     }

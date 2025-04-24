@@ -8,23 +8,23 @@ public class WeaponController : MonoBehaviour
     
     public static event Action Shoot;
     public static event Action StopShoot;
-    public static event Action Delete;
+    //public static event Action Delete;
     //public static event Action Reload;
     public GameObject selectedWeapon;
     [SerializeField] private GameObject WeaponPoint;
-    public Transform shootPoint;
-    public Transform WeaponPos;
+    public Transform shootPoint;//grab shootpoint from gun
+    public Transform WeaponPos;//position where weapon spawns
     public GameObject ProjectilePrefab;
-    public GameObject[] weapons = new GameObject[3];
-    public bool hasPistol, hasMachineGun, hasShotgun = false;
+    public GameObject[] weapons = new GameObject[4];
+    public bool hasPistol, hasMachineGun, hasShotgun, hasThrowable = false;
     public GameObject currentWeapon;
-    public PlayerAmmo plAmmo;
+    public PlayerAmmo plAmmo;//needed to call info from player ammo
 
     void Start()
     {
         if (WeaponPoint == null)
         {
-            WeaponPoint = GameObject.FindGameObjectWithTag("WeaponPoint");
+            WeaponPoint = GameObject.FindGameObjectWithTag("WeaponPoint");//grabs the default point on the player
         }
         WeaponPos = WeaponPoint.transform;
         currentWeapon = null;
@@ -41,7 +41,7 @@ public class WeaponController : MonoBehaviour
         {
             if (weapons[0] != null && selectedWeapon != weapons[0])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[0]) Destroy(currentWeapon);
                 selectedWeapon = weapons[0];
                 Debug.Log("Switched to " + selectedWeapon.name);
@@ -54,7 +54,7 @@ public class WeaponController : MonoBehaviour
         {
             if(weapons[1] != null && selectedWeapon != weapons[1])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[1]) Destroy(currentWeapon);
                 selectedWeapon = weapons[1];
                 Debug.Log("Switched to " + selectedWeapon.name);
@@ -66,12 +66,24 @@ public class WeaponController : MonoBehaviour
         {
             if (weapons[2] != null && selectedWeapon != weapons[2])
             {
-                if (selectedWeapon == null) Delete.Invoke();
+                //if (selectedWeapon == null) Delete.Invoke();
                 if(selectedWeapon !=weapons[2]) Destroy(currentWeapon);
                 selectedWeapon = weapons[2];
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateShotgun();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (weapons[3] != null && selectedWeapon != weapons[3] && hasThrowable)
+            {
+                //if (selectedWeapon == null) Delete.Invoke();
+                if (selectedWeapon != weapons[3]) Destroy(currentWeapon);
+                selectedWeapon = weapons[3];
+                Debug.Log("Switched to " + selectedWeapon.name);
+                currentWeapon = Instantiate(selectedWeapon, WeaponPos);
+                plAmmo.UpdateThrowable();
             }
         }
 

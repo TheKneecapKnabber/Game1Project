@@ -12,23 +12,23 @@ public class Shotgun : ProjectileWeaponBase, IReloadable
     public EnemyBase EnemyBase;
     public WeaponController wc;
     public PlayerAmmo plAmmo;
-    int bullets = 10;
-    public float spread = 1f;
-    private float spreadX, spreadY, spreadZ;
+    int bullets = 10;//how many get shot at once
+    public float spread = 1f;// sets the range on the spread
+    private float spreadX, spreadY, spreadZ;// random values that get set later based on the spread
 
     void OnEnable()
     {
         WeaponController.Shoot += ShootWep;
         
-        WeaponController.Delete += Despawn;
+       
     }
     void OnDisable()
     { 
         WeaponController.Shoot -= ShootWep;
         
-        WeaponController.Delete += Despawn;
+        
     }
-    void Awake()
+    void Start()
     {
         shotsLeft = magazineSize;
         if (wc == null)
