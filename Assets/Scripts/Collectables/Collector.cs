@@ -9,13 +9,14 @@ public class Collector : MonoBehaviour
     
     [SerializeField] private Transform collectorSouce;
     public TMP_Text itemText;
+    public bool hasKey;
     
     public float collectorRange = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        hasKey = false;   
     }
 
     // Update is called once per frame
