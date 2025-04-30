@@ -33,7 +33,7 @@ public class AmmoUI : MonoBehaviour
 
     private void UpdateNAmmoUI(int newNAmmo)
     {
-        if(wc.selectedWeapon == wc.weapons[0])
+        if(wc.selectedWeapon != null && wc.selectedWeapon == wc.weapons[0])
         {
             plAmmo.UpdatePistol();
         }
