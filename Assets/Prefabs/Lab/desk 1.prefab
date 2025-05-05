@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5576777583089824245}
   - component: {fileID: 4558917634135282976}
   - component: {fileID: 4916945347584863430}
+  - component: {fileID: 8561354512032048227}
   m_Layer: 0
   m_Name: desk 1
   m_TagString: Untagged
@@ -88,6 +89,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8561354512032048227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848122297301188371}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06462913, y: 0.1272888, z: 0.048416942}
+  m_Center: {x: 0, y: 0, z: 0.0000000018626448}
 --- !u!1 &1234367599877420421
 GameObject:
   m_ObjectHideFlags: 0
