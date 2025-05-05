@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d4270e4a3879d245b59d87f49c3feb8, type: 3}
-  m_Name: L4
+  m_Name: L0 Training
   m_EditorClassIdentifier: 
-  levelName: Enemy AI Test
+  levelName: Training Area
   levelIndex: 4
-  backgroundImage: {fileID: 21300000, guid: 20c83626f5efc354f949288ebc0aec2a, type: 3}
+  backgroundImage: {fileID: 21300000, guid: dbc0b0ebd9bbf4d4584b77dd1c7b5fa9, type: 3}
   bestTime: 0
   hasBeenBeaten: 0
