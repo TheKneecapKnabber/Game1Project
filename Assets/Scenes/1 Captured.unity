@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.6266278
       objectReference: {fileID: 0}
+    - target: {fileID: 2853129470428721446, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+      propertyPath: m_Name
+      value: ClonePods
+      objectReference: {fileID: 0}
     - target: {fileID: 4953559124189126083, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.035
@@ -295,6 +299,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 7643280495355487347, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
     - {fileID: 8977375095098263433, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+    - {fileID: 3586450672873767254, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+    - {fileID: 4725886717942484047, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+    - {fileID: 6477670527123902226, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+    - {fileID: 8282187029398750556, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
+    - {fileID: 2966986813057756222, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3914544119273931644, guid: 06a2622a51a9ecb4890e3b43554ed22e, type: 3}
