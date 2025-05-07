@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathHandler : MonoBehaviour
 {
@@ -14,6 +15,6 @@ public class DeathHandler : MonoBehaviour
     }
     private void GameOver()
     {
-        Debug.Log("Game Over");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

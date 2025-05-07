@@ -13,7 +13,7 @@ public abstract class WeaponCollectableBase : CollectableBase
         {
             //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("found player");
+            //Debug.Log("found player");
             wc = player.GetComponent<WeaponController>();
             plAmmo = player.GetComponent<PlayerAmmo>();
         }

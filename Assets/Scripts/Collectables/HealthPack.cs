@@ -15,7 +15,7 @@ public class HealthPack : InstantUseBase, IRecovery
         {
             //find player to get components later in the scripts
             player = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("found player");
+            //Debug.Log("found player");
             ph = player.GetComponent<PlayerHealth>();
         }
         else
@@ -27,10 +27,10 @@ public class HealthPack : InstantUseBase, IRecovery
     
     public override void OnPickup()
     {
-        Debug.Log("in pickup");
+        //Debug.Log("in pickup");
         //on pickup heal player
         Recover(recoverHealth);
-        Debug.Log("past recover");
+        //Debug.Log("past recover");
         //could add particles for extra effect
 
         //after it has been picked up delete or disable

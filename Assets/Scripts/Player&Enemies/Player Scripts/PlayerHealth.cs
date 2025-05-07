@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
 {
@@ -51,6 +52,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
             health = maxHealth;
             OnPlayerDeath?.Invoke();
             //Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }

@@ -11,7 +11,7 @@ public abstract class CollectableBase : MonoBehaviour
         if (player == null)
         {
             //find player to get components later in the scripts
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = CollectorManager.instance.player;
             //Debug.Log("found player");
         }
     }

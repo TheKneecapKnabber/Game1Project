@@ -16,7 +16,7 @@ public abstract class InstantUseBase : CollectableBase
     }
     public override void OnPickup()
     {
-        Debug.Log ("do something");
+        //Debug.Log ("do something");
         Destroy (gameObject);
     }
 

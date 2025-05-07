@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8816797227497620383}
   - component: {fileID: 5869221721261672782}
   - component: {fileID: 1482541311415009140}
+  - component: {fileID: 7077771702484531309}
   - component: {fileID: 4127301072328874603}
   - component: {fileID: 4413603556500705472}
   - component: {fileID: 3820220748121665356}
@@ -234,6 +235,19 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   damageAmount: 10
+--- !u!114 &7077771702484531309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066873714077078099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6398fc6d8ecd934aafc8f4b0e90b545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1066873714077078099}
 --- !u!114 &4127301072328874603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +325,7 @@ MonoBehaviour:
   hasShotgun: 0
   hasThrowable: 0
   currentWeapon: {fileID: 0}
-  plAmmo: {fileID: 0}
+  plAmmo: {fileID: 4127301072328874603}
 --- !u!1 &2904819050798974135
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +354,7 @@ Transform:
   m_GameObject: {fileID: 2904819050798974135}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.088}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -421,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectorSouce: {fileID: 8394218133807458484}
   itemText: {fileID: 0}
+  hasKey: 0
   collectorRange: 5
 --- !u!1 &3145799053994074356
 GameObject:
