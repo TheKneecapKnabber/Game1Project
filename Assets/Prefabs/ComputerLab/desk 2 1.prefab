@@ -347,6 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1788138169238677506}
+  - component: {fileID: 5477414704006045670}
   m_Layer: 0
   m_Name: Computer1 Variant
   m_TagString: Untagged
@@ -376,6 +377,27 @@ Transform:
   - {fileID: 816184861876188665}
   m_Father: {fileID: 6716614233337120043}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &5477414704006045670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412844526425977528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2020459591286115098
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +842,7 @@ GameObject:
   - component: {fileID: 6716614233337120043}
   - component: {fileID: 7532205942835411211}
   - component: {fileID: 1618616356927057555}
+  - component: {fileID: 8542815953875289275}
   m_Layer: 0
   m_Name: desk 2 1
   m_TagString: Untagged
@@ -894,6 +917,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8542815953875289275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3773601374133924630}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06462914, y: 0.12728883, z: 0.048416954}
+  m_Center: {x: 4.863822e-22, y: 0.000000029802322, z: 0.0000000018626451}
 --- !u!1 &3978405517577434423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,6 +2111,7 @@ GameObject:
   - component: {fileID: 7980844367282140428}
   - component: {fileID: 951217811152103391}
   - component: {fileID: 8174872907612637915}
+  - component: {fileID: 1202206166530291089}
   m_Layer: 0
   m_Name: swivel-chair
   m_TagString: Untagged
@@ -2139,6 +2184,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1202206166530291089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162211525946222842}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03627641, y: 0.033012614, z: 0.060338154}
+  m_Center: {x: -0.0014585295, y: -0.0000017551649, z: 0.020013144}
 --- !u!1 &7243644969619555520
 GameObject:
   m_ObjectHideFlags: 0
