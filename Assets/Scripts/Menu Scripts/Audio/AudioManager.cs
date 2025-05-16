@@ -56,7 +56,10 @@ public class AudioManager : MonoBehaviour
     public void ChangeBGMVolumePref(float v)
     {
         _bgmVolumePref = v;
+        _sfxVolumePref = v;
         PlayerPrefs.SetFloat("_bgmVolumePref", v);
+        PlayerPrefs.SetFloat("_sfxVolumePref", v);
+        Debug.Log(v);
     }
 
 
