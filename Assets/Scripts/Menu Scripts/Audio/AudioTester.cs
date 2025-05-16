@@ -10,7 +10,7 @@ public class AudioTester : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            AudioManager.instance?.PlayBGM(clipToPlay1);
+            AudioManager.instance?.PlaySfx(clipToPlay1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {

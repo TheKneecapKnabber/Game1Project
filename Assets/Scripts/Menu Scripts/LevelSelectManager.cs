@@ -9,7 +9,7 @@ public class LevelSelectManager : MonoBehaviour
 {
     public static LevelSelectManager levelInstance;
     public LevelLoad currentLevel;
-    public GameObject mainMenu, levelSelectMenu, pickSaveMenu, endLevelScreen;
+    public GameObject mainMenu, levelSelectMenu, settingsMenu, endLevelScreen;
     public float curLevelTime;
     public float levelFinishTime;
     public bool curLevelCompleted;
@@ -30,6 +30,7 @@ public class LevelSelectManager : MonoBehaviour
         endLevelScreen.SetActive(false);
         levelSelectMenu.SetActive(false);
         mainMenu.SetActive(true);
+        DontDestroyOnLoad(this.gameObject);
     }
     public void LoadLevel()
     {
@@ -43,14 +44,14 @@ public class LevelSelectManager : MonoBehaviour
     public void ChooseMainMenu()
     {
         levelSelectMenu.SetActive(false);
-        pickSaveMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
 
-    public void ChooseSaveMenu()
+    public void ChooseSettingsMenu()
     {
-        pickSaveMenu.SetActive(true);
         mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 
     public void StartLevelTimer()
