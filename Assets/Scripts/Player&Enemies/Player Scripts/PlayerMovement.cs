@@ -16,9 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 move, look;
     private Rigidbody rb;
     private Camera cam;
+    public bool isInMenu;
 
     private void Start()
     {
+        isInMenu = false;
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
 
@@ -34,79 +36,86 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        move.x = Input.GetAxis("Horizontal");
-        move.y = Input.GetAxis("Vertical");
-
-        look.x = Input.GetAxis("Mouse X");
-        look.y = Input.GetAxis("Mouse Y");
-
-        //jumping
-        if (gt.grounded)
+        if (!isInMenu)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            move.x = Input.GetAxis("Horizontal");
+            move.y = Input.GetAxis("Vertical");
+
+            look.x = Input.GetAxis("Mouse X");
+            look.y = Input.GetAxis("Mouse Y");
+
+            //jumping
+            if (gt.grounded)
             {
-                rb.AddForce(Vector3.up * jumpForce);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    rb.AddForce(Vector3.up * jumpForce);
+                }
             }
-        }
-                
-        //crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))//enter crouch
-        {
-            speed = crouchSpeed;
-            crouching = true;
-            transform.localScale = new Vector3(1f, 0.5f, 1f);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftControl))//leave crouch
-        {
-            speed = walkSpeed;
-            crouching = false;
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        if (!crouching)//to prevent sprint speed while crouching
-            //jumping isn't required to go in here so we can have move interesting vents
-        {
 
-            //sprint
-            if (Input.GetKeyDown(KeyCode.LeftShift))//enter
+            //crouch
+            if (Input.GetKeyDown(KeyCode.LeftControl))//enter crouch
             {
-                speed = runSpeed;
-
+                speed = crouchSpeed;
+                crouching = true;
+                transform.localScale = new Vector3(1f, 0.5f, 1f);
             }
-            if (Input.GetKeyUp(KeyCode.LeftShift))//leave
+            if (Input.GetKeyUp(KeyCode.LeftControl))//leave crouch
             {
                 speed = walkSpeed;
+                crouching = false;
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            if (!crouching)//to prevent sprint speed while crouching
+                           //jumping isn't required to go in here so we can have move interesting vents
+            {
+
+                //sprint
+                if (Input.GetKeyDown(KeyCode.LeftShift))//enter
+                {
+                    speed = runSpeed;
+
+                }
+                if (Input.GetKeyUp(KeyCode.LeftShift))//leave
+                {
+                    speed = walkSpeed;
+                }
             }
         }
-
 
     }
 
     private void FixedUpdate()
     {
-        Vector3 currVelocity = rb.velocity;
-        Vector3 targetVelocity = new Vector3(move.x, 0, move.y) * speed;
+        if (!isInMenu)
+        {
+            Vector3 currVelocity = rb.velocity;
+            Vector3 targetVelocity = new Vector3(move.x, 0, move.y) * speed;
 
-        targetVelocity = transform.TransformDirection(targetVelocity);
-        Vector3 velocityChange = targetVelocity - currVelocity;
+            targetVelocity = transform.TransformDirection(targetVelocity);
+            Vector3 velocityChange = targetVelocity - currVelocity;
 
-        Vector3.ClampMagnitude(velocityChange, maxForce);
+            Vector3.ClampMagnitude(velocityChange, maxForce);
 
-        rb.AddForce(new Vector3(velocityChange.x, 0, velocityChange.z), ForceMode.VelocityChange);
-        rb.AddForce(Vector3.down * gravity * rb.mass);
+            rb.AddForce(new Vector3(velocityChange.x, 0, velocityChange.z), ForceMode.VelocityChange);
+            rb.AddForce(Vector3.down * gravity * rb.mass);
+        }
 
     }
 
     private void LateUpdate()
     {
-        transform.Rotate(Vector3.up * look.x * sensitivity);
+        if (!isInMenu)
+        {
+            transform.Rotate(Vector3.up * look.x * sensitivity);
 
-        lookRot += (-look.y * sensitivity);
+            lookRot += (-look.y * sensitivity);
 
-        lookRot = Mathf.Clamp(lookRot, -90, 90);
+            lookRot = Mathf.Clamp(lookRot, -90, 90);
 
-        cam.transform.eulerAngles = new Vector3(lookRot,
+            cam.transform.eulerAngles = new Vector3(lookRot,
             cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
+        }
     }
     
 }

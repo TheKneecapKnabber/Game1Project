@@ -13,10 +13,19 @@ public class LevelLoad : MonoBehaviour
     private Sprite _levelSprite;
     [SerializeField]private Image _levelImage;
     public GameObject levelSelectImage;
+    public LevelLoad previousLevel;
 
 
-    private void Awake()
+    private void OnEnable()
     {
+        /*if(previousLevel != null && previousLevel.curLevel.hasBeenBeaten == false)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }*/
         float minutes = Mathf.Floor(curLevel.bestTime / 60);
         float seconds = curLevel.bestTime % 60;
         _levelName.text = curLevel.levelName;
@@ -30,7 +39,7 @@ public class LevelLoad : MonoBehaviour
         }
         else
         {
-            _levelBestTime.gameObject.SetActive(false   );
+            _levelBestTime.gameObject.SetActive(false);
         }
 
 

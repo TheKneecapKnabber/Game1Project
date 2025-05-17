@@ -6,6 +6,7 @@ public abstract class WeaponCollectableBase : CollectableBase
 {
     protected WeaponController wc;
     protected PlayerAmmo plAmmo;
+    public GameObject weaponPic, selectedWeapon;
 
     void Start()
     {
@@ -27,6 +28,12 @@ public abstract class WeaponCollectableBase : CollectableBase
 
     public override void OnPickup()
     {
+        weaponPic.SetActive(true);
+        if (selectedWeapon.activeSelf != true)
+        {
+            selectedWeapon.SetActive(true);
+            selectedWeapon.transform.position = weaponPic.transform.position;
+        }
         Equip();
         Destroy(gameObject);
     }

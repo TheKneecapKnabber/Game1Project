@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class AmmoUI : MonoBehaviour
+public class AmmoUI2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text nAmmoText;
+    public TMP_Text weaponName;
     //[SerializeField] private TMP_Text sAmmoText;
     public PlayerAmmo plAmmo;
     public WeaponController wc;

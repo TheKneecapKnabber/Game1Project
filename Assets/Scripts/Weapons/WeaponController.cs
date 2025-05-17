@@ -19,6 +19,8 @@ public class WeaponController : MonoBehaviour
     public bool hasPistol, hasMachineGun, hasShotgun, hasThrowable = false;
     public GameObject currentWeapon;
     public PlayerAmmo plAmmo;//needed to call info from player ammo
+    public GameObject pistolUI, shotgunUI, mgUI, selectedWepUI;
+    public AmmoUI2 inventory;
 
     void Start()
     {
@@ -47,6 +49,8 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdatePistol();
+                selectedWepUI.transform.position = pistolUI.transform.position;
+                inventory.weaponName.text = "Pistol";
             }
             
         }
@@ -60,6 +64,8 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateMachinegun();
+                selectedWepUI.transform.position = mgUI.transform.position;
+                inventory.weaponName.text = "Machine Gun";
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -72,6 +78,8 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Switched to " + selectedWeapon.name);
                 currentWeapon = Instantiate(selectedWeapon, WeaponPos);
                 plAmmo.UpdateShotgun();
+                selectedWepUI.transform.position = shotgunUI.transform.position;
+                inventory.weaponName.text = "Shotgun";
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))

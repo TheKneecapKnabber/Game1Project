@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollectableShotgun : WeaponCollectableBase
 {
     [SerializeField] private GameObject shotgunPreFab;
+    public AmmoUI2 inventory;
     [SerializeField] private int giveAmmo = 5; //give ammo should be clip size
 
 
@@ -31,6 +32,7 @@ public class CollectableShotgun : WeaponCollectableBase
             wc.hasShotgun = true;
             if(wc.currentWeapon == null)
             {
+                inventory.weaponName.text = "Shotgun";
                 plAmmo.shotgunAmmo += 5;
                 wc.selectedWeapon = wc.weapons[2];
                 wc.currentWeapon = Instantiate(wc.selectedWeapon, wc.WeaponPos);

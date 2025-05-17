@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/2 Warehouse.unity
     guid: 117f620ea6244064c91b180825405d56
   - enabled: 1
+    path: Assets/Scenes/3 Laboratory.unity
+    guid: 1b148cb8d7d1e3d4fbb885858fac7bc8
+  - enabled: 0
     path: Assets/Scenes/TestingMaps/Test.unity
     guid: 0cda4a9e18517a14fa90b4a28b7626c0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestingMaps/EnemyTesting.unity
     guid: 6c0fc8c1062e7024fba4559d9fab4d66
   m_configObjects: {}

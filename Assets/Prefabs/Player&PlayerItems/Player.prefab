@@ -326,6 +326,11 @@ MonoBehaviour:
   hasThrowable: 0
   currentWeapon: {fileID: 0}
   plAmmo: {fileID: 4127301072328874603}
+  pistolUI: {fileID: 0}
+  shotgunUI: {fileID: 0}
+  mgUI: {fileID: 0}
+  selectedWepUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &2904819050798974135
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,8 +502,8 @@ Transform:
   m_GameObject: {fileID: 3826417085026694242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.57, z: 0}
+  m_LocalScale: {x: 0.9, y: 1, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1798368657413928692}

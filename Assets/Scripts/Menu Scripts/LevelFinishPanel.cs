@@ -9,7 +9,7 @@ public class LevelFinishPanel : MonoBehaviour
     public TMP_Text levelTime;
     public float levelCompleteTime;
 
-    private void Awake()
+    private void OnEnable()
     {
         float minutes = Mathf.Floor(levelInstance.levelFinishTime / 60);
         float seconds = levelInstance.levelFinishTime % 60;
